@@ -7,7 +7,7 @@
     <p class="text-center fw-bold">Sistema de Gestión de Actividades de Soporte Técnico</p>
     <div class="row justify-content-center">
         <div class="col-4 text-center">
-            <form action="<?php echo base_url('usuarios') ?>" method="get">
+            <form action="<?php echo base_url('/login') ?>" method="get">
                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
             </form>
         </div>

@@ -29,4 +29,31 @@ class UserModel extends Model
     {
         $this->db->table($this->table)->insert($data);
     }
+
+    public function login($cedula, $password)
+    {
+        if($cedula == null || $password == null){
+            return false;
+        }
+
+
+        $hash_password = $this->db->query("SELECT password FROM $this->table WHERE cedula = '$cedula'")->getRowArray();
+
+        $hash_password = $hash_password['password'];
+
+        $usuario = $this->db->query("SELECT cedula,nombre_u,apellido_u,correo_electronico,rol FROM $this->table WHERE cedula = '$cedula'")->getRowArray();
+
+        log_message('debug', 'Usuario: ' . json_encode($usuario));
+        //die();
+        if(empty($usuario)){
+            return false;
+        }
+
+        if(password_verify($password, $hash_password)){
+            return $usuario;
+        }
+
+        //return false;
+
+    }
 }
