@@ -19,6 +19,8 @@ class SolicitudController extends BaseController
         return view('Solicitudes/SolicitudPersona');
     }
 
-    
-
+    public function dashboard()
+    {
+        return view('Tickets/TicketsDashboard');
+    }
 }
