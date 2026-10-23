@@ -26,9 +26,9 @@ class SolicitudModel extends Model
 
     public function setSolicitud($data){
 
-        $this->db->table($this->table)->insert($data);
+        $solicitud = $this->db->table($this->table)->insert($data);
 
-        if ($this->db->errno() === 0) {
+        if ($solicitud) {
             return true;
         } else {
             // Log del error

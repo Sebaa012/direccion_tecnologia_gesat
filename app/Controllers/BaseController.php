@@ -46,4 +46,29 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
         // $this->session = service('session');
     }
+
+    public function getResponse(array $responseBody, int $code = ResponseInterface::HTTP_OK)
+    {
+        return $this->response
+            ->setStatusCode($code)
+            ->setJSON($responseBody);
+    }
+
+    public function getRequestInput(IncomingRequest $request)
+    {
+        $input = $request->getPost();
+        if (empty($input)) {
+            $input = json_decode($request->getBody(), true);
+        }
+        return $input;
+    }
+
+    public function validateRequest(IncomingRequest $request, array $rules, array $messages = [])
+    {
+        $input = $this->getRequestInput($request);
+        $validator = \Config\Services::validation();
+        $validator->setRules($rules, $messages);
+        $validator->run($input);
+        return $validator;
+    }
 }
