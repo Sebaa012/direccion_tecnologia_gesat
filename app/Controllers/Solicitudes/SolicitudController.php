@@ -44,6 +44,6 @@ class SolicitudController extends BaseController
 
     public function dashboard()
     {
-        return view('Tickets/TicketsDashboard');
+        return view('Tickets/TicketsDashboard', ['titulo' => 'Dashboard']);
     }
 }

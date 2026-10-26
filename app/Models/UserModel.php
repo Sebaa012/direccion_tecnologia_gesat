@@ -15,7 +15,8 @@ class UserModel extends Model
         'apellido_u',
         'correo_electronico',
         'password',
-        'rol'
+        'rol',
+        'activo'
     ];
 
 
@@ -43,6 +44,7 @@ class UserModel extends Model
 
         $usuario = $this->db->query("SELECT cedula,nombre_u,apellido_u,correo_electronico,rol FROM $this->table WHERE cedula = '$cedula'")->getRowArray();
 
+        $activo = $this->db->query("UPDATE $this->table SET activo = '1' WHERE cedula = '$cedula'");
         log_message('debug', 'Usuario: ' . json_encode($usuario));
         //die();
         if(empty($usuario)){
@@ -56,4 +58,9 @@ class UserModel extends Model
         //return false;
 
     }
+
+    public function logout($cedula){
+        $this->db->table($this->table)->update(['activo' => '0'], ['cedula' => $cedula]);
+    }
+    
 }

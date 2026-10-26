@@ -9,7 +9,8 @@
 <?php } ?>    
 <?php if(isset($_GET['error']) && $_GET['error'] == 1){ ?>
     <div class="col-12 col-md-8 col-lg-7 alert alert-danger" role="alert">Error al enviar la solicitud</div>
-<?php } ?>    
+<?php } ?>
+</div>
 
 <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-7">

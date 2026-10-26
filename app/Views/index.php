@@ -2,6 +2,12 @@
 
 <?php echo $this->section('content') ?>
 
+<?php if(session()->get('rol') != null) { ?>
+    <script>
+        window.location.href = "/dashboard";
+    </script>
+<?php } ?>
+
 <div class="container py-5">
     <div class="text-center mb-5">
         <h1 class="text-success fw-bold">Bienvenido</h1>

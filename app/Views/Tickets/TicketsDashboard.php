@@ -2,9 +2,12 @@
 <?php echo $this->section('content') ?>
 
 <div class="mt-2">
-    <h1 class="text-center fw-bold">Tickets Disponibles</h1>
-    <h2 class="text-center text-secondary">Elija el requerimiento a atender</h2>
-    <hr>
+    <div class="row justify-content-center">
+        <div class="col">
+            <h1 class="text-center fw-bold">Tickets Disponibles</h1>
+            <p class="text-center text-secondary fw-bold border-bottom">Elija el requerimiento a atender</p>
+        </div>
+
 </div>
 
 <div class="container mb-3">

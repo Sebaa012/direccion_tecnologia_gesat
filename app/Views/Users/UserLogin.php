@@ -2,11 +2,22 @@
 
 <?php echo $this->section('content') ?>
 
+<?php if(session()->get('rol') != null) { ?>
+    <script>
+        window.location.href = "/dashboard";
+    </script>
+<?php } ?>
 
+<div class="row text-center mt-4">
+    <div class="col-md-12">
+        <a href="<?php echo base_url('/') ?>" class="btn btn-primary mb-3 bg-white text-primary border border-primary shadow"><i class="fa-solid fa-arrow-left"></i>Volver a la página principal</a>
+    </div>
+</div>
 
 <div class="row justify-content-center">
+    
 
-    <div class="card col-md-4 mt-4">
+    <div class="card col-md-4 mt-4 py-4 shadow-lg">
         <div class="card-body">
             <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
                 <div class="alert alert-danger"><?php echo "Usuario o contraseña vacíos" ?></div>

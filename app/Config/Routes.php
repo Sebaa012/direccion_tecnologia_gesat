@@ -14,3 +14,4 @@ $routes->post('/Users/LoginController/login', 'Users\LoginController::login');
 $routes->get('/dashboard', 'Solicitudes\SolicitudController::dashboard');
 $routes->get('/solicitudes', 'Solicitudes\SolicitudController::solicitudes');
 $routes->post('/saveSolicitud', 'Solicitudes\SolicitudController::setSolicitud');
+$routes->get('/logout', 'Users\LoginController::logout');

@@ -53,8 +53,18 @@ class LoginController extends Controller
             if ($usuario == null) {
                 return redirect()->to('/login?error=2');
             } else if ($usuario != null) {
+                $session = session();
+                $session->set($usuario);
                 return redirect()->to('/dashboard');
+
             }
         }
+    }
+
+    public function logout() {
+        $session = session();
+        $logout = $this->userModel->logout($session->get('cedula'));
+        $session->destroy();
+        return redirect()->to('/login');
     }
 }
