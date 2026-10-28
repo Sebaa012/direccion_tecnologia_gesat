@@ -40,7 +40,7 @@ class SolicitudModel extends Model
     }
 
     public function getSolicitudes(){
-        $solicitudes = $this->db->table($this->table)->where('estado', 'PENDIENTE')->get();
+        $solicitudes = $this->db->table($this->table)->where('estado', 'PENDIENTE')->orderBy('fecha_soli', 'DESC')->get();
         return $solicitudes->getResultArray();
     }
 

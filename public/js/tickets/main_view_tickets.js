@@ -25,7 +25,7 @@ $(function () {
                                 <td>${solicitud.tipo_solicitud}</td>
                                 <td>${solicitud.descripcion}</td>
                                 <td>
-                                    <a href="${window.baseURL}tickets/ver/${solicitud.id_solicitud}" class="btn btn-success btn-sm"><i class="fa-solid fa-save"></i></a>
+                                    <button id="btn-asignar" data-id-solicitud="${solicitud.id_solicitud}" class="btn btn-success btn-sm"><i class="fa-solid fa-save"></i>Asignar</button>
                                 </td>
                             </tr>
                         `;
@@ -39,4 +39,11 @@ $(function () {
             }
         });
     }
+
+    $(document).on('click', '#btn-asignar', function () {
+        let idSolicitud = $(this).data('id-solicitud');
+        console.log(idSolicitud);
+        $('#modal-asignar').modal('show');
+        $('#modal-asignar').data('id-solicitud', idSolicitud);
+    });
 });

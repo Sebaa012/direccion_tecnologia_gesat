@@ -64,6 +64,33 @@
     </div>
 </div>
 
+<div class="modal" id="modal-asignar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Asignar Ticket</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+                <form action="<?= base_url('tickets/asignar') ?>" method="post">
+                    <div class="form-check">
+                        <?php foreach ($usuarios as $usuario): ?>
+                            <form action="" method="post"><input class="form-check-input" type="radio" name="id_tecnico" id="id_tecnico_<?= $usuario['cedula'] ?>" value="<?= $usuario['cedula'] ?>">
+                            <label class="form-check-label" for="id_tecnico_<?= $usuario['cedula'] ?>">
+                                <?= $usuario['nombre'] ?>
+                            </label>
+                        </form>
+                        <?php endforeach; ?>
+                        <input type="hidden" name="id_ticket" value="<?= $usuario['id_ticket'] ?>">
+                        <input type="submit" class="btn btn-primary" value="Asignar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <?php echo $this->endSection(); ?>
 <?= $this->section('scripts') ?>
 <script src="<?= base_url('js/tickets/main_view_tickets.js') ?>"></script>

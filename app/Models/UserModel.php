@@ -59,6 +59,11 @@ class UserModel extends Model
 
     }
 
+    public function getTecnicos(){
+        $tecnicos = $this->db->query("SELECT cedula, CONCAT(nombre_u, ' ', apellido_u) as nombre FROM $this->table WHERE rol = 'TECNICO'")->getResultArray();
+        return $tecnicos;    
+    }
+
     public function logout($cedula){
         $this->db->table($this->table)->update(['activo' => '0'], ['cedula' => $cedula]);
     }

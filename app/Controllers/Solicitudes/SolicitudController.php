@@ -5,16 +5,19 @@ namespace App\Controllers\Solicitudes;
 use App\Controllers\BaseController;
 use App\Models\SolicitudModel;
 use App\Models\DepartmentModel;
+use App\Models\UserModel;
 
 class SolicitudController extends BaseController
 {
     protected $solicitudModel;
     protected $departmentModel;
+    protected $userModel;
 
     public function __construct()
     {
         $this->solicitudModel = new SolicitudModel();
         $this->departmentModel = new DepartmentModel();
+        $this->userModel = new UserModel();
         helper(['form', 'url']);
     }
     public function solicitudes()
@@ -44,8 +47,10 @@ class SolicitudController extends BaseController
 
     public function dashboard()
     {
-        $solicitudes = $this->solicitudModel->getSolicitudes();
-        return view('Tickets/TicketsDashboard', ['titulo' => 'Dashboard', 'solicitudes' => $solicitudes]);
+        $usuarios = $this->userModel->findAll();
+        //$solicitudes = $this->solicitudModel->getSolicitudes();
+        $usuarios = $this->userModel->getTecnicos();
+        return view('Tickets/TicketsDashboard', ['titulo' => 'Dashboard', 'usuarios' => $usuarios]);
     }
 
     public function listarTicketsAjax()
