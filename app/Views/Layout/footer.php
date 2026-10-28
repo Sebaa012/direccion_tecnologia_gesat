@@ -1,4 +1,5 @@
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('js/jquery.min.js') ?>"></script>
+    <script src="<?= base_url('js/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= base_url('js/footer_settings.js') ?>"></script>
 
     <footer class="footer bg-primary">

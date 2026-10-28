@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $titulo ?? 'Bitácoras DTIC' ?></title>
+    <title><?= $titulo ?? 'DTIC' ?></title>
     <!-- Bootstrap CSS -->
     <style>
     body {
@@ -17,8 +17,8 @@
         flex: 1;
     }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/9c24df651e.js" crossorigin="anonymous"></script>
+    <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('css/all.min.css') ?>" rel="stylesheet">
 </head>
 
 <body class="bg-light">
