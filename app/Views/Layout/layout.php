@@ -23,14 +23,11 @@
 
 <body class="bg-light">
 
-    <?php if (session()->get('rol') == 'ADMINISTRADOR') { ?>
-        <?= $this->include('Layout/navbar_admin') ?>
+    <?php if (session()->get('rol') != null) { ?>
+        <?= $this->include('Layout/navbar') ?>
         
     <?php } ?>
-    <?php if (session()->get('rol') == 'TECNICO') { ?>
-        <?= $this->include('Layout/navbar_tec') ?>
-        
-    <?php } ?>
+   
 <main>
         <?= $this->renderSection('content') ?>
     </main>

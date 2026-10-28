@@ -3,6 +3,12 @@
 <?= $this->section('content'); ?>
 
 
+<div class="row text-center mt-4">
+    <div class="col-md-12">
+        <a href="<?php echo base_url('/') ?>" class="btn btn-primary mb-3 bg-white text-primary border border-primary shadow"><i class="fa-solid fa-arrow-left"></i>Volver a la página principal</a>
+    </div>
+</div>
+
 <div class="row justify-content-center py-4">
 <?php if(isset($_GET['solicitud']) && $_GET['solicitud'] == 1){ ?>
     <div class="col-12 col-md-8 col-lg-7 alert alert-success" role="alert">Solicitud enviada correctamente</div>
