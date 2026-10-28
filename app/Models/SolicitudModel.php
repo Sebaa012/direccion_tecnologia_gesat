@@ -17,7 +17,8 @@ class SolicitudModel extends Model
         'nombre_solicitante',
         'telefono',
         'fecha_soli',
-        'fecha_res'
+        'fecha_res',
+        'estado'
     ];
 
     protected $createdField = 'fecha_soli';
@@ -38,7 +39,10 @@ class SolicitudModel extends Model
 
     }
 
-
+    public function getSolicitudes(){
+        $solicitudes = $this->db->table($this->table)->where('estado', 'PENDIENTE')->get();
+        return $solicitudes->getResultArray();
+    }
 
 }
 

@@ -44,6 +44,30 @@ class SolicitudController extends BaseController
 
     public function dashboard()
     {
-        return view('Tickets/TicketsDashboard', ['titulo' => 'Dashboard']);
+        $solicitudes = $this->solicitudModel->getSolicitudes();
+        return view('Tickets/TicketsDashboard', ['titulo' => 'Dashboard', 'solicitudes' => $solicitudes]);
     }
+
+    public function listarTicketsAjax()
+    {
+        $solicitudes = $this->solicitudModel->getSolicitudes();
+        return $this->response->setJSON($solicitudes);
+    }
+
+    public function atenderTicketsAjax()
+    {
+        $id = $this->request->getPost('id_solicitud');
+        if(!$id){
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Error al atender el ticket']);
+        }
+        $data = [
+            'estado' => 'EN ATENCIÓN',
+            'fecha_res' => date('Y-m-d H:i:s')
+        ];
+        $this->solicitudModel->setSolicitud($data);
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Ticket atendido correctamente']);
+        
+    }
+
+    
 }

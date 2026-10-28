@@ -15,3 +15,6 @@ $routes->get('/dashboard', 'Solicitudes\SolicitudController::dashboard');
 $routes->get('/solicitudes', 'Solicitudes\SolicitudController::solicitudes');
 $routes->post('/saveSolicitud', 'Solicitudes\SolicitudController::setSolicitud');
 $routes->get('/logout', 'Users\LoginController::logout');
+
+$routes->get('tickets/listar', 'Solicitudes\SolicitudController::listarTicketsAjax');
+$routes->post('tickets/atender/(:num)', 'Solicitudes\SolicitudController::atenderTicketsAjax');

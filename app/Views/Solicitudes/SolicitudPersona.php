@@ -46,7 +46,7 @@
                             <select name="departamento" id="departamento" class="form-select" required>
                                 <option value="0">Seleccione el departamento</option>
                                 <?php foreach ($departamentos as $departamento) : ?>
-                                    <option placeholder="Seleccione el departamento" value="<?= $departamento['id_departamento'] ?>"><?= $departamento['departamento'] ?></option>
+                                    <option placeholder="Seleccione el departamento" value="<?= $departamento['departamento'] ?>"><?= $departamento['departamento'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

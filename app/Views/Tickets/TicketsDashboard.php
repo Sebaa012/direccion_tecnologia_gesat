@@ -48,25 +48,14 @@
                         <tr>
                             <th>Solicitante</th>
                             <th>Departamento</th>
-                            <th>Oficina</th>
                             <th>Piso</th>
                             <th>Requerimiento</th>
                             <th>Detalle</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="" class="btn btn-primary btn-sm">Ver</a>
-                            </td>
-                        </tr>
+                    <tbody id="ticket-list">
+                        <!-- Se carga dinámicamente -->
                     </tbody>
                 </table>
             </div>
@@ -76,3 +65,6 @@
 </div>
 
 <?php echo $this->endSection(); ?>
+<?= $this->section('scripts') ?>
+<script src="<?= base_url('js/tickets/main_view_tickets.js') ?>"></script>
+<?= $this->endSection() ?>
