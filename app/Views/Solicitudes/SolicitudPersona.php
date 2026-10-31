@@ -78,7 +78,7 @@
                 <div class="row mb-3 align-items-center">
                     <?= form_label('Teléfono', 'telefono', ['class' => 'col-sm-4 col-form-label', 'required' => true]); ?>
                     <div class="col-sm-8">
-                        <?= form_input('telefono', '', ['class' => 'form-control', 'id' => 'telefono', 'placeholder' => 'Ej. 0412-1234567', 'inputmode' => 'numeric']); ?>
+                        <?= form_input('telefono', '', ['class' => 'form-control', 'id' => 'telefono', 'placeholder' => 'Ej. 04121234567', 'inputmode' => 'numeric']); ?>
                     </div>
                 </div>
 

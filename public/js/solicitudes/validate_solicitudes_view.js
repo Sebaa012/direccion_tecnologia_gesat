@@ -9,7 +9,6 @@ $(document).ready(function () {
             event.preventDefault();
             return false;
         }
-
         if (document.getElementById("piso").value == 'Seleccione el piso') {
             $("#piso").addClass("is-invalid");
             $("#piso").after($("<span class='error text-danger'>Seleccione el piso</span>"));
@@ -24,9 +23,9 @@ $(document).ready(function () {
             return false;
         }
 
-        if (document.getElementById("telefono").value.length < 12) {
+        if (document.getElementById("telefono").value.length < 11) {
             $("#telefono").addClass("is-invalid");
-            $("#telefono").after($("<span class='error text-danger'>Su teléfono no puede ser menor a 7 caracteres</span>"));
+            $("#telefono").after($("<span class='error text-danger'>Su teléfono no puede ser menor a 11 caracteres</span>"));
             event.preventDefault();
             return false;
         }
