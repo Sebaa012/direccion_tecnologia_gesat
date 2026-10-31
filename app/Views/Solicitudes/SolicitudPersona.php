@@ -2,6 +2,12 @@
 
 <?= $this->section('content'); ?>
 
+<?php if (session()->get('rol') != null) { ?>
+    <script>
+        window.location.href = "/dashboard";
+    </script>
+<?php } ?>
+
 
 <div class="row text-center mt-4">
     <div class="col-md-12">
@@ -31,11 +37,12 @@
                     <?= form_label('Tipo de solicitud', 'tipo_solicitud', ['class' => 'col-sm-4 col-form-label']); ?>
                     <div class="col-sm-8">
                         <?= form_dropdown('tipo_solicitud', [
-                            1 => 'Sin conexión a internet',
-                            2 => 'Equipo no enciende',
-                            3 => 'Office no funciona',
-                            4 => 'Problema de impresora',
-                            5 => 'Teléfono sin conexión'
+                            '' => 'Seleccione el tipo de solicitud',
+                            'Sin conexión a internet' => 'Sin conexión a internet',
+                            'Equipo no enciende' => 'Equipo no enciende',
+                            'Office no funciona' => 'Office no funciona',
+                            'Problema de impresora' => 'Problema de impresora',
+                            'Teléfono sin conexión' => 'Teléfono sin conexión'
                         ], '', ['class' => 'form-select', 'id' => 'tipo_solicitud', 'required' => true, 'placeholder' => 'Seleccione el tipo de solicitud']); ?>
                     </div>
                 </div>
@@ -56,12 +63,13 @@
                     <?= form_label('Piso', 'piso', ['class' => 'col-sm-4 col-form-label', 'required' => true]); ?>
                     <div class="col-sm-8">
                         <?= form_dropdown('piso', [
-                            0 => 'Sótano',
-                            1 => 'PB',
-                            2 => 'Primer Piso',
-                            3 => 'Segundo Piso',
-                            4 => 'Tercer Piso',
-                            5 => 'Cuarto Piso',
+                            '' => 'Seleccione el piso',
+                            'Sótano' => 'Sótano',
+                            'PB' => 'PB',
+                            'Primer Piso' => 'Primer Piso',
+                            'Segundo Piso' => 'Segundo Piso',
+                            'Tercer Piso' => 'Tercer Piso',
+                            'Cuarto Piso' => 'Cuarto Piso',
                             6 => 'Quinto Piso',
 
                         ], '', ['class' => 'form-select ', 'id' => 'piso', 'required' => true, 'placeholder' => 'Seleccione el piso']); ?>
@@ -71,21 +79,21 @@
                 <div class="row mb-3 align-items-center">
                     <?= form_label('Nombre del solicitante', 'nombre_solicitante', ['class' => 'col-sm-4 col-form-label', 'required' => true]); ?>
                     <div class="col-sm-8">
-                        <?= form_input('nombre_solicitante', '', ['class' => 'form-control', 'id' => 'nombre_solicitante', 'placeholder' => 'Nombre completo'/*, 'required' => true*/]); ?>
+                        <?= form_input('nombre_solicitante', '', ['class' => 'form-control', 'id' => 'nombre_solicitante', 'placeholder' => 'Nombre completo', 'oninput' => "this.value = this.value.replace(/[^a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ.,¿?¡!-]/g, '')"]); ?>
                     </div>
                 </div>
 
                 <div class="row mb-3 align-items-center">
                     <?= form_label('Teléfono', 'telefono', ['class' => 'col-sm-4 col-form-label', 'required' => true]); ?>
                     <div class="col-sm-8">
-                        <?= form_input('telefono', '', ['class' => 'form-control', 'id' => 'telefono', 'placeholder' => 'Ej. 04121234567', 'inputmode' => 'numeric']); ?>
+                        <?= form_input('telefono', '', ['class' => 'form-control', 'id' => 'telefono', 'placeholder' => 'Ej. 04121234567', 'inputmode' => 'numeric', 'input' => 'number', 'oninput' => "this.value = this.value.replace(/[^0-9]/g, '')"]); ?>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <?= form_label('Descripción:', 'descripcion', ['class' => 'col-sm-4 col-form-label']); ?>
                     <div class="col-sm-8">
-                        <?= form_textarea('descripcion', '', ['class' => 'form-control', 'id' => 'descripcion', 'placeholder' => 'Escribe una descripción de la falla', 'rows' => '4'/*,'required' => true*/]); ?>
+                        <?= form_textarea('descripcion', '', ['class' => 'form-control', 'id' => 'descripcion', 'placeholder' => 'Escribe una descripción de la falla', 'rows' => '4', 'oninput' => "this.value = this.value.replace(/[^a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ.,¿?¡!-]/g, '')"]); ?>
                     </div>
                 </div>
 

@@ -3,13 +3,13 @@ $(document).ready(function () {
     function validar() {
 
 
-        if (document.getElementById("departamento").value == 'Seleccione el departamento') {
+        if (document.getElementById("departamento").value == '') {
             $("#departamento").addClass("is-invalid");
             $("#departamento").after($("<span class='error text-danger'>Seleccione el departamento</span>"));
             event.preventDefault();
             return false;
         }
-        if (document.getElementById("piso").value == 'Seleccione el piso') {
+        if (document.getElementById("piso").value == '') {
             $("#piso").addClass("is-invalid");
             $("#piso").after($("<span class='error text-danger'>Seleccione el piso</span>"));
             event.preventDefault();
