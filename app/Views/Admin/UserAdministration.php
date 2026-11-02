@@ -6,6 +6,7 @@
     redirect()->to(base_url('login'));
 } ?>
 
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-11 col-sm-8 col-md-6 col-lg-5">
@@ -52,51 +53,46 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
-                    <div class="form-check">
-                        <?php foreach ($usuarios as $usuario): ?>
-                            <form action="" method="post"><input class="form-check-input" type="radio" name="id_tecnico" id="id_tecnico_<?= $usuario['cedula'] ?>" value="<?= $usuario['cedula'] ?>">
-                                <label class="form-check-label" for="id_tecnico_<?= $usuario['cedula'] ?>">
-                                    <?= $usuario['nombre'] ?>
-                                </label>
-                            </form>
-                        <?php endforeach; ?>
-                        <input type="hidden" name="id_ticket" value="">
-                        <input type="submit" class="btn btn-warning w-25" value="Actualizar">
-                    </div>
-                </form>
+                <div class="form-check">
+                    <?php foreach ($usuarios as $usuario): ?>
+                        <label class="form-check-label d-flex justify-content-between align-items-center border p-2 rounded mb-2" for="id_usuario_<?= $usuario['id_usuario'] ?>">
+                            <?= $usuario['nombre_u'] . " " . $usuario['apellido_u'] ?>
+                            <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>">
+                            <a href="<?= base_url('usuarios/updateUser/' . $usuario['id_usuario']) ?>" class="btn btn-warning"><i class="fa-solid fa-user-pen"></i></a>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal justify-content-center" id="modal-eliminar">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title">Eliminar Usuario</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="#" method="post">
-                    <div class="form-check">
-                        <?php foreach ($usuarios as $usuario): ?>
-                            <form action="" method="post"><input class="form-check-input" type="radio" name="id_tecnico" id="id_tecnico_<?= $usuario['cedula'] ?>" value="<?= $usuario['cedula'] ?>">
-                                <label class="form-check-label" for="id_tecnico_<?= $usuario['cedula'] ?>">
-                                    <?= $usuario['nombre'] ?>
-                                </label>
-                            </form>
-                        <?php endforeach; ?>
-                        <input type="hidden" name="id_ticket" value="">
-                        <input type="submit" class="btn btn-danger w-25" value="Eliminar" onclick="return confirm('¿Está seguro de eliminar el usuario? Esta acción no se puede deshacer')">
-                    </div>
-                </form>
+    <div class="modal justify-content-center" id="modal-eliminar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Eliminar Usuario</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-check">
+                            <?php foreach ($usuarios as $usuario): ?>
+                                <form action="" method="post"><input class="form-check-input" type="radio" name="id_usuario" id="id_usuario_<?= $usuario['cedula'] ?>" value="<?= $usuario['cedula'] ?>">
+                                    <label class="form-check-label" for="id_usuario_<?= $usuario['cedula'] ?>">
+                                        <?= $usuario['nombre_u'] . " " . $usuario['apellido_u'] ?>
+                                    </label>
+                                </form>
+                            <?php endforeach; ?>
+                            <input type="hidden" name="id_ticket" value="">
+                            <input type="submit" class="btn btn-danger w-25" value="Eliminar" onclick="return confirm('¿Está seguro de eliminar el usuario? Esta acción no se puede deshacer')">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<?php echo $this->endSection(); ?>
-<?= $this->section('scripts') ?>
-<script src="<?= base_url('js/admin/modal_views.js') ?>"></script>
-<?= $this->endSection() ?>
+    <?php echo $this->endSection(); ?>
+    <?= $this->section('scripts') ?>
+    <script src="<?= base_url('js/admin/modal_views.js') ?>"></script>
+    <?= $this->endSection() ?>

@@ -20,7 +20,9 @@ $routes->post('/saveSolicitud', 'Solicitudes\SolicitudController::setSolicitud')
 
 
 $routes->get('/logout', 'Users\LoginController::logout');
-$routes->get('/usuarios/administration', 'Users\UserController::userAdministration');
+$routes->get('/usuarios/administration', 'Admin\AdminController::userAdministration');
+$routes->get('/usuarios/updateUser/(:num)', 'Admin\AdminController::viewUpdateUser/$1');
+$routes->post('/usuarios/updateUser/(:num)', 'Admin\AdminController::updateUser/$1');
 
 $routes->get('tickets/listar', 'Solicitudes\SolicitudController::listarTicketsAjax');
 $routes->post('tickets/atender/(:num)', 'Solicitudes\SolicitudController::atenderTicketsAjax');

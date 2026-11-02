@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Tickets</a>
+                    <a class="nav-link active" aria-current="page" href="<?= base_url('/dashboard') ?>">Tickets</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Mis Tickets</a>
