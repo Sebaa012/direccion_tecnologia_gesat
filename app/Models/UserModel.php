@@ -33,39 +33,44 @@ class UserModel extends Model
 
     public function login($cedula, $password)
     {
-        if($cedula == null || $password == null){
+        if ($cedula == null || $password == null) {
             return false;
         }
 
 
         $hash_password = $this->db->query("SELECT password FROM $this->table WHERE cedula = '$cedula'")->getRowArray();
 
+        if ($hash_password == null) {
+            return false;
+        }
+
         $hash_password = $hash_password['password'];
+
 
         $usuario = $this->db->query("SELECT cedula,nombre_u,apellido_u,correo_electronico,rol FROM $this->table WHERE cedula = '$cedula'")->getRowArray();
 
         $this->db->query("UPDATE $this->table SET activo = '1' WHERE cedula = '$cedula'");
         log_message('debug', 'Usuario: ' . json_encode($usuario));
         //die();
-        if(empty($usuario)){
+        if (empty($usuario)) {
             return false;
         }
 
-        if(password_verify($password, $hash_password)){
+        if (password_verify($password, $hash_password)) {
             return $usuario;
+        } else {
+            return false;
         }
-
-        //return false;
-
     }
 
-    public function getTecnicos(){
+    public function getTecnicos()
+    {
         $tecnicos = $this->db->query("SELECT cedula, CONCAT(nombre_u, ' ', apellido_u) as nombre FROM $this->table WHERE rol = 'TECNICO'")->getResultArray();
-        return $tecnicos;    
+        return $tecnicos;
     }
 
-    public function logout($cedula){
+    public function logout($cedula)
+    {
         $this->db->table($this->table)->update(['activo' => '0'], ['cedula' => $cedula]);
     }
-    
 }

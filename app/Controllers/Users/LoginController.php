@@ -50,18 +50,18 @@ class LoginController extends Controller
         } else {
             $usuario = $this->userModel->login($cedula, $password);
             log_message('debug', 'Controller: Usuario Logueado: ' . json_encode($usuario));
-            if ($usuario == null) {
+            if ($usuario == null || $usuario == false) {
                 return redirect()->to('/login?error=2');
-            } else if ($usuario != null) {
+            } else if ($usuario != null || $usuario != false) {
                 $session = session();
                 $session->set($usuario);
                 return redirect()->to('/dashboard');
-
             }
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         $session = session();
         $logout = $this->userModel->logout($session->get('cedula'));
         $session->destroy();

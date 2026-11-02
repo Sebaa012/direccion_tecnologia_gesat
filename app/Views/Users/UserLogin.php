@@ -2,7 +2,7 @@
 
 <?php echo $this->section('content') ?>
 
-<?php if(session()->get('rol') != null) { ?>
+<?php if (session()->get('rol') != null) { ?>
     <script>
         window.location.href = "/dashboard";
     </script>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="row justify-content-center">
-    
+
 
     <div class="card col-md-4 mt-4 py-4 shadow-lg">
         <div class="card-body">
@@ -31,7 +31,7 @@
             <?php echo form_open('Users/LoginController/login') ?>
             <div class="mb-3">
                 <?php echo form_label('Usuario (Cédula de Identidad)', 'cedula') ?>
-                <?php echo form_input('cedula', '', ['class' => 'form-control', 'placeholder' => "Usuario", 'type' => 'number']); ?>
+                <?php echo form_input('cedula', '', ['class' => 'form-control', 'placeholder' => "Usuario", 'type' => 'number', 'oninput' => 'this.value = this.value.replace(/[^0-9]/g, "");']); ?>
             </div>
             <div class="mb-3">
                 <?php echo form_label('Contraseña', 'password') ?>
