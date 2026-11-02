@@ -1,0 +1,42 @@
+<?= $this->extend('Layout/layout') ?>
+
+<?= $this->section('content') ?>
+
+<?php if (session('rol') != 'ADMINISTRADOR') {
+    redirect()->to(base_url('login'));
+} ?>
+
+<div class="container mt-3">
+    <div class="col">
+        <div class="card">
+            <div class="card-header d-flex justify-content-center">
+                <h2>Administración de usuarios</h2>
+            </div>
+            <div class="card-body">
+                <div class="row border mt-2 mb-2">
+                    <div class="col mt-2 mb-2 d-flex justify-content-center">
+                        <strong>Insertar Usuarios</strong>
+                        <a href="<?= base_url('usuarios/insert') ?>" class="btn btn-primary">Insertar</a>
+                    </div>
+                </div>
+                <div class="row border mt-2 mb-2">
+                    <div class="col mt-2 mb-2 d-flex justify-content-center">
+                        <strong>Editar Usuarios</strong><br><a href="<?= base_url('usuarios/edit') ?>" class="btn btn-primary">Editar</a>
+                    </div>
+                </div>
+                <div class="row border mt-2 mb-2">
+                    <div class="col mt-2 mb-2 d-flex justify-content-center">
+                        <strong>Eliminar Usuarios</strong><br><a href="<?= base_url('usuarios/delete') ?>" class="btn btn-primary">Eliminar</a>
+                    </div>
+                </div>
+                <div class="row border mt-2 mb-2">
+                    <div class="col mt-2 mb-2 d-flex justify-content-center">
+                        <strong>Consultar Usuarios</strong><br><a href="<?= base_url('usuarios/consult') ?>" class="btn btn-primary">Consultar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?= $this->endSection() ?>
