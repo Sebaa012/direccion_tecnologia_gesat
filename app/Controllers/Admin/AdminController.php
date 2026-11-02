@@ -71,17 +71,33 @@ class AdminController extends Controller
 
     public function updateUser($id_usuario)
     {
-        $data = [
-            'cedula' => $this->request->getPost('cedula'),
-            'nombre_u' => $this->request->getPost('nombre_u'),
-            'apellido_u' => $this->request->getPost('apellido_u'),
-            'correo_electronico' => $this->request->getPost('correo_electronico'),
-            'rol' => $this->request->getPost('rol'),
-            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-        ];
+        if ($this->request->getPost('password') != "" || $this->request->getPost('password') != null) {
+            $data = [
+                'cedula' => $this->request->getPost('cedula'),
+                'nombre_u' => $this->request->getPost('nombre_u'),
+                'apellido_u' => $this->request->getPost('apellido_u'),
+                'correo_electronico' => $this->request->getPost('correo_electronico'),
+                'rol' => $this->request->getPost('rol'),
+                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            ];
+        } else {
+            $data = [
+                'cedula' => $this->request->getPost('cedula'),
+                'nombre_u' => $this->request->getPost('nombre_u'),
+                'apellido_u' => $this->request->getPost('apellido_u'),
+                'correo_electronico' => $this->request->getPost('correo_electronico'),
+                'rol' => $this->request->getPost('rol'),
+            ];
+        }
 
 
         $this->userModel->update($id_usuario, $data);
+        return redirect()->to('usuarios/administration');
+    }
+
+    public function deleteUser($id_usuario)
+    {
+        $this->userModel->delete($id_usuario);
         return redirect()->to('usuarios/administration');
     }
 }

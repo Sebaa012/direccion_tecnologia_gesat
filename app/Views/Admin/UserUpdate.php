@@ -36,10 +36,16 @@
                         <?= form_input(['name' => 'correo_electronico', 'id' => 'correo_electronico', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'correo@ejemplo.com', 'oninput' => 'this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");', 'value' => $usuario['correo_electronico']]) ?>
                     </div>
 
-                    <div class="mb-3">
-                        <?= form_label('Contraseña', 'password', ['class' => 'form-label']) ?>
-                        <?= form_input(['name' => 'password', 'id' => 'password', 'type' => 'password', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese contraseña', 'oninput' => 'this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");', 'value' => $usuario['password']]) ?>
+
+                    <div class="input-group mb-3">
+                        <button class="btn btn-warning" id="update_password">Actualizar contraseña</button>
                     </div>
+
+                    <div class="mb-3">
+                        <?= form_label('Contraseña', 'password', ['class' => 'form-label', 'id' => 'password-label']) ?>
+                        <?= form_input(['name' => 'password', 'id' => 'password', 'type' => 'password', 'class' => 'form-control', 'placeholder' => 'Ingrese contraseña', 'oninput' => 'this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");']) ?>
+                    </div>
+
 
                     <div class="mb-4">
                         <label for="rol" class="form-label">Rol</label>
@@ -60,4 +66,8 @@
         </div>
     </div>
 </div>
+
+<?php echo $this->endSection(); ?>
+<?= $this->section('scripts') ?>
+<script src="<?= base_url('js/admin/user_update.js') ?>"></script>
 <?= $this->endSection() ?>
