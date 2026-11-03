@@ -18,22 +18,22 @@
                     <?= form_open('usuarios/updateUser/' . $usuario['id_usuario']) ?>
                     <div class="mb-3">
                         <?= form_label('Cédula', 'cedula', ['class' => 'form-label']) ?>
-                        <?= form_input(['name' => 'cedula', 'id' => 'cedula', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ej: 12345678', 'oninput' => 'this.value = this.value.replace(/[^0-9]/g, "");', 'value' => $usuario['cedula']]) ?>
+                        <?= form_input(['name' => 'cedula', 'id' => 'cedula', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ej: 12345678', 'oninput' => "this.value = this.value.replace(/[^0-9]/g, '');", 'value' => $usuario['cedula']]) ?>
                     </div>
 
                     <div class="mb-3">
                         <?= form_label('Nombre', 'nombre_u', ['class' => 'form-label']) ?>
-                        <?= form_input(['name' => 'nombre_u', 'id' => 'nombre_u', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese nombre', 'oninput' => 'this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");', 'value' => $usuario['nombre_u']]) ?>
+                        <?= form_input(['name' => 'nombre_u', 'id' => 'nombre_u', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese nombre', 'oninput' => "this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, '');", 'value' => $usuario['nombre_u']]) ?>
                     </div>
 
                     <div class="mb-3">
                         <?= form_label('Apellido', 'apellido_u', ['class' => 'form-label']) ?>
-                        <?= form_input(['name' => 'apellido_u', 'id' => 'apellido_u', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese apellido', 'oninput' => 'this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");', 'value' => $usuario['apellido_u']]) ?>
+                        <?= form_input(['name' => 'apellido_u', 'id' => 'apellido_u', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese apellido', 'oninput' => "this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, '');", 'value' => $usuario['apellido_u']]) ?>
                     </div>
 
                     <div class="mb-3">
                         <?= form_label('Correo electrónico', 'correo_electronico', ['class' => 'form-label']) ?>
-                        <?= form_input(['name' => 'correo_electronico', 'id' => 'correo_electronico', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'correo@ejemplo.com', 'oninput' => 'this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");', 'value' => $usuario['correo_electronico']]) ?>
+                        <?= form_input(['name' => 'correo_electronico', 'id' => 'correo_electronico', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'correo@ejemplo.com', 'oninput' => "this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, '');", 'value' => $usuario['correo_electronico']]) ?>
                     </div>
 
 
@@ -70,4 +70,5 @@
 <?php echo $this->endSection(); ?>
 <?= $this->section('scripts') ?>
 <script src="<?= base_url('js/admin/user_update.js') ?>"></script>
+<script src="<?= base_url('js/admin/validate_user_insert.js') ?>"></script>
 <?= $this->endSection() ?>
