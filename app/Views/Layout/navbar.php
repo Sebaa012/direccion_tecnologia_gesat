@@ -13,7 +13,7 @@
                     <a class="nav-link" href="#">Mis Tickets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pendientes</a>
+                    <a class="nav-link" href="<?= base_url('/tickets/pendientes') ?>">Pendientes</a>
                 </li>
                 <?php if (session()->get('rol') == 'ADMINISTRADOR') { ?>
                     <li class="nav-item">

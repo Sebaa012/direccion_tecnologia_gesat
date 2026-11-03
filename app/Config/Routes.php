@@ -28,3 +28,5 @@ $routes->get('/usuarios/deleteUser/(:num)', 'Admin\AdminController::deleteUser/$
 $routes->get('tickets/listar', 'Solicitudes\SolicitudController::listarTicketsAjax');
 //$routes->post('tickets/atender/(:num)', 'Solicitudes\SolicitudController::atenderTicketsAjax');
 $routes->post('tickets/asignar', 'Solicitudes\SolicitudController::asignarTicketsAjax');
+
+$routes->get('/tickets/pendientes', 'Solicitudes\SolicitudController::ticketsPendientes');

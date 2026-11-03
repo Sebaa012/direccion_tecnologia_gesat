@@ -91,5 +91,12 @@ class SolicitudController extends BaseController
         
     }
 
+    public function ticketsPendientes()
+    {
+        $id_usuario = session('id_usuario');
+        $solicitudes = $this->solicitudModel->getSolicitudes();
+        return view('Tickets/TicketPendiente', ['titulo' => 'Tickets Pendientes', 'solicitudes' => $solicitudes]);
+    }
+
     
 }
