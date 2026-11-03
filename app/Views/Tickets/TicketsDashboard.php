@@ -1,6 +1,11 @@
 <?php echo $this->extend('Layout/layout'); ?>
 <?php echo $this->section('content') ?>
 
+<?php 
+if (isset($_GET['asignado']) && $_GET['asignado'] == 1) { ?>
+    <div class="alert alert-success" role="alert">Solicitud asignada correctamente</div>
+<?php } ?>
+
 <div class="mt-2">
     <div class="row justify-content-center">
         <div class="col">
@@ -64,31 +69,29 @@
         </div>
     </div>
 
-    <div class="modal" id="modal-asignar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Asignar Ticket</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?= base_url('tickets/asignar') ?>" method="post">
-                        <div class="form-check">
-                            <?php foreach ($usuarios as $usuario): ?>
-                                <form action="" method="post"><input class="form-check-input" type="radio" name="id_tecnico" id="id_tecnico_<?= $usuario['cedula'] ?>" value="<?= $usuario['cedula'] ?>">
-                                    <label class="form-check-label" for="id_tecnico_<?= $usuario['cedula'] ?>">
-                                        <?= $usuario['nombre'] ?>
-                                    </label>
-                                </form>
-                            <?php endforeach; ?>
-                            <input type="hidden" name="id_ticket" value="">
-                            <input type="submit" class="btn btn-primary" value="Asignar">
-                        </div>
-                    </form>
+<div class="modal" id="modal-asignar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title fw-bold">Asignar Técnico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-check">
+                    <?php foreach ($usuarios as $usuario): ?>
+                        <form action="<?= base_url('tickets/asignar') ?>" method="post">
+                            <label class="form-check-label d-flex justify-content-between align-items-center border p-2 rounded mb-2" for="id_usuario_<?= $usuario['id_usuario'] ?>">
+                                <?= $usuario['nombre_u'] . " " . $usuario['apellido_u'] ?>
+                                <a href="#" class="btn btn-success btn-confirmar-asignar" data-id-usuario="<?= $usuario['id_usuario'] ?>"><i class="fa-solid fa-user-pen"></i></a>
+                            </label>
+                        </form>
+
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
     <?php echo $this->endSection(); ?>
