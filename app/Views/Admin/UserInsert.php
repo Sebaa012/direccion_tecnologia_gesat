@@ -31,7 +31,7 @@
 
                     <div class="mb-3">
                         <?= form_label('Correo electrónico', 'correo_electronico', ['class' => 'form-label']) ?>
-                        <?= form_input(['name' => 'correo_electronico', 'id' => 'correo_electronico', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'correo@ejemplo.com', 'oninput' => "this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, '');"]) ?>
+                        <?= form_input(['name' => 'correo_electronico', 'id' => 'correo_electronico', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'correo@ejemplo.com', 'oninput' => "this.value = this.value.replace(/[^a-zA-Z0-9@._+\-]/g, '');"])  ?>
                     </div>
 
                     <div class="mb-3">

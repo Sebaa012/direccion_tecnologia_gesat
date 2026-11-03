@@ -54,7 +54,6 @@ $(function () {
 
     let idSolicitud = $('#modal-asignar').data('id-solicitud');
 
-    // 3. Envías ambos por POST
     $.ajax({
         url: window.baseURL + 'tickets/asignar', 
         method: 'POST',
