@@ -36,7 +36,7 @@
 
                     <div class="mb-3">
                         <?= form_label('Contraseña', 'password', ['class' => 'form-label']) ?>
-                        <?= form_input(['name' => 'password', 'id' => 'password', 'type' => 'password', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese contraseña', 'oninput' => "this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, '');"]) ?>
+                        <?= form_input(['name' => 'password', 'id' => 'password', 'type' => 'password', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ingrese contraseña', 'oninput' => "this.value = this.value.replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '');"])  ?>
                     </div>
 
                     <div class="mb-4">
