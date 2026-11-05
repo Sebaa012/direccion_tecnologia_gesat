@@ -9,6 +9,14 @@ class AsignateModel extends Model
     protected $primaryKey = 'id_asignacion';
 
 
+    protected $allowedFields = [
+        'tecnico',
+        'id_solicitud',
+        'asignante',
+        'estado',
+        'fecha_asig'
+    ];
+
     protected $createdField = 'fecha_asig';
     protected $updatedField = 'fecha_resol';
 
