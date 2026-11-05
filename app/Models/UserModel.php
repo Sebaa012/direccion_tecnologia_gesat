@@ -73,4 +73,20 @@ class UserModel extends Model
     {
         $this->db->table($this->table)->update(['activo' => '0'], ['cedula' => $cedula]);
     }
+
+     public function getUser($id_usuario)
+    {
+        return $this->find($id_usuario);
+    }
+
+    public function updateUser($id_usuario, $data)
+    {
+        return $this->update($id_usuario, $data);
+    }
+
+    public function deleteUser($id_usuario)
+    {
+        return $this->delete($id_usuario);
+    }
 }
+
