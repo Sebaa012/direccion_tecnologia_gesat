@@ -23,7 +23,7 @@
                 <tbody>
                     <tr class="border border-dark">
                         <td class="d-flex justify-content-center py-2">
-                            <a href="<?= base_url('/usuarios/insert') ?>" class="btn btn-success w-75">Crear Usuario <i class="fa-solid fa-user-plus"></i></a>
+                            <a href="<?= base_url('/administration/insert') ?>" class="btn btn-success w-75">Crear Usuario <i class="fa-solid fa-user-plus"></i></a>
                         </td>
                     </tr>
                     <tr class="border border-dark">
@@ -38,7 +38,7 @@
                     </tr>
                     <tr class="border border-dark">
                         <td class="d-flex justify-content-center py-2">
-                            <a href="<?= base_url('/usuarios') ?>" class="btn btn-primary w-75">Consultar Usuario <i class="fa-solid fa-user-check"></i></a>
+                            <a href="<?= base_url('/administration/consult') ?>" class="btn btn-primary w-75">Consultar Usuario <i class="fa-solid fa-user-check"></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -60,7 +60,7 @@
                         <label class="form-check-label d-flex justify-content-between align-items-center border p-2 rounded mb-2" for="id_usuario_<?= $usuario['id_usuario'] ?>">
                             <?= $usuario['nombre_u'] . " " . $usuario['apellido_u'] ?>
                             <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>">
-                            <a href="<?= base_url('usuarios/updateUser/' . $usuario['id_usuario']) ?>" class="btn btn-warning"><i class="fa-solid fa-user-pen"></i></a>
+                            <a href="<?= base_url('/administration/updateUser/' . $usuario['id_usuario']) ?>" class="btn btn-warning"><i class="fa-solid fa-user-pen"></i></a>
                         </label>
                     <?php endforeach; ?>
                 </div>
@@ -82,7 +82,7 @@
                         <label class="form-check-label d-flex justify-content-between align-items-center border p-2 rounded mb-2" for="id_usuario_<?= $usuario['id_usuario'] ?>">
                             <?= $usuario['nombre_u'] . " " . $usuario['apellido_u'] ?>
                             <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>">
-                            <a href="<?= base_url('usuarios/deleteUser/' . $usuario['id_usuario']) ?>" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar este usuario?')"><i class="fa-solid fa-user-xmark"></i></a>
+                            <a href="<?= base_url('administration/deleteUser/' . $usuario['id_usuario']) ?>" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar este usuario?')"><i class="fa-solid fa-user-xmark"></i></a>
                         </label>
                     <?php endforeach; ?>
                 </div>

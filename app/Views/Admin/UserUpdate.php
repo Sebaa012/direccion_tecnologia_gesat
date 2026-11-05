@@ -15,7 +15,7 @@
                         <h2 class="card-title text-center mb-4">Actualizar Usuario</h2>
                     </div>
 
-                    <?= form_open('usuarios/updateUser/' . $usuario['id_usuario']) ?>
+                    <?= form_open('administration/updateUser/' . $usuario['id_usuario']) ?>
                     <div class="mb-3">
                         <?= form_label('Cédula', 'cedula', ['class' => 'form-label']) ?>
                         <?= form_input(['name' => 'cedula', 'id' => 'cedula', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ej: 12345678', 'oninput' => "this.value = this.value.replace(/[^0-9]/g, '');", 'value' => $usuario['cedula']]) ?>

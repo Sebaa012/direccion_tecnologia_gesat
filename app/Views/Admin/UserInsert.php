@@ -13,7 +13,7 @@
                 <div class="card-body p-4">
                     <h2 class="card-title text-center mb-4">Crear Usuario</h2>
 
-                    <?= form_open('usuarios/saveUser', ['id' => 'form_newuser']) ?>
+                    <?= form_open('administration/saveUser', ['id' => 'form_newuser']) ?>
                     <div class="mb-3">
                         <?= form_label('Cédula', 'cedula', ['class' => 'form-label']) ?>
                         <?php echo form_input('cedula', '', ['class' => 'form-control', 'placeholder' => "Usuario", 'type' => 'number', 'oninput' => 'this.value = this.value.replace(/[^0-9]/g, "");']); ?>

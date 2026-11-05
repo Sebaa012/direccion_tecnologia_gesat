@@ -20,7 +20,7 @@
                         <a class="nav-link" href="#">Reportes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/usuarios/administration') ?>">Administrar Usuarios</a>
+                        <a class="nav-link" href="<?= base_url('/administration') ?>">Administrar Usuarios</a>
                     </li>
                 <?php } ?>
             </ul>
