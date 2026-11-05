@@ -2,9 +2,12 @@
 
 <?= $this->section('content') ?>
 
-<?php if (session('rol') != 'ADMINISTRADOR') {
-    redirect()->to(base_url('login'));
-} ?>
+
+<?php if (session()->get('rol') == null || session('rol') != 'ADMINISTRADOR') { ?>
+    <script>
+        window.location.href = "/";
+    </script>
+<?php } ?>
 
 <div class="container py-5">
     <div class="row justify-content-center">

@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 
-<?php if (session()->get('rol') == null) { ?>
+<?php if (session()->get('rol') == null || session('rol') != 'ADMINISTRADOR') { ?>
     <script>
         window.location.href = "/";
     </script>

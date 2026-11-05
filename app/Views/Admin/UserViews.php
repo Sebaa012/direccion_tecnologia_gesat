@@ -1,10 +1,18 @@
 <?= $this->extend('Layout/layout') ?>
 
 <?= $this->section('content') ?>
+
+
+<?php if (session()->get('rol') == null || session('rol') != 'ADMINISTRADOR') { ?>
+    <script>
+        window.location.href = "/";
+    </script>
+<?php } ?>
+
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h2 mb-0">Gestión de Usuarios</h1>
-        <a href="<?= base_url('usuarios/insert') ?>" class="btn btn-primary">
+        <a href="<?= base_url('administration/insert') ?>" class="btn btn-primary">
             + Nuevo Usuario
         </a>
     </div>
