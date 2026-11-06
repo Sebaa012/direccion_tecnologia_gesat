@@ -17,13 +17,19 @@ $routes->post('/saveSolicitud', 'Solicitudes\SolicitudController::setSolicitud')
 
 $routes->get('/logout', 'Users\LoginController::logout');
 
-$routes->get('/administration', 'Users\UserController::userAdministration');
-$routes->get('/administration/updateUser/(:num)', 'Users\UserController::viewUpdateUser/$1');
-$routes->post('/administration/updateUser/(:num)', 'Users\UserController::updateUser/$1');
-$routes->get('/administration/deleteUser/(:num)', 'Users\UserController::deleteUser/$1');
-$routes->get('/administration/consult', 'Users\UserController::usuarios');
-$routes->get('/administration/insert', 'Users\UserController::InsertUser');
-$routes->post('/administration/saveUser', 'Users\UserController::saveUser');
+$routes->group(
+    'administration',
+    ['namespace' => 'App\Controllers\Users'],
+    function ($routes) {
+        $routes->get('/', 'UserController::userAdministration');
+        $routes->get('consult', 'UserController::usuarios');
+        $routes->get('insert', 'UserController::InsertUser');
+        $routes->post('saveUser', 'UserController::saveUser');
+        $routes->get('updateUser/(:num)', 'UserController::viewUpdateUser/$1');
+        $routes->post('updateUser/(:num)', 'UserController::updateUser/$1');
+        $routes->get('deleteUser/(:num)', 'UserController::deleteUser/$1');
+    }
+);
 
 $routes->get('tickets/listar', 'Solicitudes\SolicitudController::listarTicketsAjax');
 $routes->post('tickets/asignar', 'Solicitudes\SolicitudController::asignarTicketsAjax');
