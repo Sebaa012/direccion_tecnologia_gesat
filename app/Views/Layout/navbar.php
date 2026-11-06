@@ -25,6 +25,11 @@
                 <?php } ?>
             </ul>
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item mt-3 py-2 my-sm-0">
+                    <span class="navbar-text text-white mt-3 py-2 my-sm-0">
+                        <?= session()->get('nombre_u') . ' ' . session()->get('apellido_u') ?>
+                    </span>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link btn btn-outline-danger" href="<?= base_url('/logout') ?>"><i><i class="fa-solid fa-right-from-bracket my-2 my-sm-0"></i></i>Cerrar Sesión</a>
                 </li>

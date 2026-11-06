@@ -33,7 +33,7 @@ class LoginController extends Controller
             if ($usuario == null || $usuario == false) {
                 return redirect()->to('/login?error=2');
             } else if ($usuario != null || $usuario != false) {
-                $session = session();
+                $session = \Config\Services::session();
                 $session->set($usuario);
                 return redirect()->to('/dashboard');
             }

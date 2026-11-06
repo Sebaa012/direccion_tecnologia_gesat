@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "sessionId": "session-3caef999-f5ce-4073-8d77-a9f68e8630c4",
+  "cwd": "/srv/http/bitacoras_dtic/bitacoras_dtic",
+  "checkpoints": [
+    {
+      "turn": 1,
+      "commit": "b878f545ab421085a90869e17051be4769df6193",
+      "parent": "9289d52db78dc9a968e9c957045da9212df9eed8",
+      "time": 1793918870327,
+      "untracked": [],
+      "truncated": false
+    }
+  ],
+  "rolls": [],
+  "updatedAt": 1793918870405
+}
