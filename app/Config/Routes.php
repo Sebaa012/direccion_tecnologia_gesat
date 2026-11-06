@@ -15,7 +15,7 @@ $routes->get('/solicitudes', 'Solicitudes\SolicitudController::solicitudes');
 $routes->post('/saveSolicitud', 'Solicitudes\SolicitudController::setSolicitud');
 
 
-$routes->get('/logout', 'Users\LoginController::logout');
+$routes->post('/logout', 'Users\LoginController::logout');
 
 $routes->group(
     'administration',
@@ -27,7 +27,7 @@ $routes->group(
         $routes->post('saveUser', 'UserController::saveUser');
         $routes->get('updateUser/(:num)', 'UserController::viewUpdateUser/$1');
         $routes->post('updateUser/(:num)', 'UserController::updateUser/$1');
-        $routes->get('deleteUser/(:num)', 'UserController::deleteUser/$1');
+        $routes->post('deleteUser/(:num)', 'UserController::deleteUser/$1');
     }
 );
 

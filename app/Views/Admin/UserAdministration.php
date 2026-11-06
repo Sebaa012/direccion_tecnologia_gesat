@@ -79,11 +79,13 @@
             <div class="modal-body">
                 <div class="form-check">
                     <?php foreach ($usuarios as $usuario): ?>
-                        <label class="form-check-label d-flex justify-content-between align-items-center border p-2 rounded mb-2" for="id_usuario_<?= $usuario['id_usuario'] ?>">
-                            <?= $usuario['nombre_u'] . " " . $usuario['apellido_u'] ?>
+                        <form action="<?= base_url('administration/deleteUser/' . $usuario['id_usuario']) ?>" method="post" class="d-flex justify-content-between align-items-center border p-2 rounded mb-2">
+                        <?= csrf_field() ?>
+    
+                        <?= $usuario['nombre_u'] . " " . $usuario['apellido_u'] ?>
                             <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>">
-                            <a href="<?= base_url('administration/deleteUser/' . $usuario['id_usuario']) ?>" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar este usuario?')"><i class="fa-solid fa-user-xmark"></i></a>
-                        </label>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar este usuario?')"><i class="fa-solid fa-user-xmark"></i></button>
+                        </form>
                     <?php endforeach; ?>
                 </div>
             </div>

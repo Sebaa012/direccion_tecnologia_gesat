@@ -31,7 +31,10 @@
                     </span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-outline-danger" href="<?= base_url('/logout') ?>"><i><i class="fa-solid fa-right-from-bracket my-2 my-sm-0"></i></i>Cerrar Sesión</a>
+                    <form id="logout-form" action="<?=base_url('/logout')?>" method="post">
+                        <?= csrf_field() ?>
+                        <button type="submit" class="btn btn-danger ms-3">Cerrar Sesión</button>
+                    </form>
                 </li>
             </ul>
         </div>

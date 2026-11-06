@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "sessionId": "session-d7bf72be-6793-4e61-8f82-f5fd73a7bf4d",
+  "cwd": "/srv/http/bitacoras_dtic/bitacoras_dtic",
+  "updatedAt": 1793929903647,
+  "checkpoints": [
+    {
+      "turn": 1,
+      "commit": "cb18218e240d765f9c29a2fe4b91ed743211c935",
+      "parent": "a5da477b06ae455ab1f9fe5fe3fcdd8182840ae0",
+      "time": 1793929676852,
+      "untracked": [
+        ".postman/resources.yaml",
+        "postman/globals/workspace.globals.yaml"
+      ],
+      "truncated": false,
+      "after": {
+        "commit": "e9d4c9c9230c11fc52425e956de47bd96d9061c0",
+        "time": 1793929903606
+      }
+    }
+  ],
+  "rolls": [],
+  "undos": []
+}

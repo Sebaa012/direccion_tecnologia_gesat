@@ -1,0 +1,51 @@
+{
+  "version": 2,
+  "sessionId": "session-455ec2bd-3df1-4258-b137-000fa3843481",
+  "cwd": "/srv/http/bitacoras_dtic/bitacoras_dtic",
+  "updatedAt": 1793928878032,
+  "checkpoints": [
+    {
+      "turn": 1,
+      "commit": "1b479369bef797f12a9c2053b9b724a13fa10d16",
+      "parent": "a5da477b06ae455ab1f9fe5fe3fcdd8182840ae0",
+      "time": 1793927136608,
+      "untracked": [
+        ".postman/resources.yaml",
+        "postman/globals/workspace.globals.yaml"
+      ],
+      "truncated": false,
+      "after": {
+        "commit": "39e2998d2c16330cea235ef3a66a0c8fa4390b64",
+        "time": 1793927442411
+      }
+    },
+    {
+      "turn": 2,
+      "commit": "b2398cc8becbf79b024a018ab801d293b3fb1d17",
+      "parent": "39e2998d2c16330cea235ef3a66a0c8fa4390b64",
+      "time": 1793928155377,
+      "untracked": [
+        ".postman/resources.yaml",
+        "postman/globals/workspace.globals.yaml"
+      ],
+      "truncated": false
+    },
+    {
+      "turn": 3,
+      "commit": "0a2d2c72562bc1de4c5418cf7e698d6ad96f5d45",
+      "parent": "b2398cc8becbf79b024a018ab801d293b3fb1d17",
+      "time": 1793928749881,
+      "untracked": [
+        ".postman/resources.yaml",
+        "postman/globals/workspace.globals.yaml"
+      ],
+      "truncated": false,
+      "after": {
+        "commit": "40a266dfa88efa54967f08429bfa4d0edd541470",
+        "time": 1793928877995
+      }
+    }
+  ],
+  "rolls": [],
+  "undos": []
+}

@@ -78,7 +78,11 @@ class SolicitudController extends BaseController
     {
         $id = $this->request->getPost('id_solicitud');
         if(!$id){
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Error al asignar el ticket']);
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Error al asignar el ticket',
+                'csrf_hash' => csrf_hash(),
+            ]);
         }
         $data = [
             'estado' => 'EN ATENCIÓN',
@@ -87,7 +91,11 @@ class SolicitudController extends BaseController
         $this->solicitudModel->setSolicitudResolucion($id, $data);
         $this->asignateModel->setAsignacion($this->request->getPost('id_usuario'), $id, session()->get('id_usuario'));
         
-        return $this->response->setJSON(['status' => 'success', 'message' => 'Ticket en atención']);
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Ticket en atención',
+            'csrf_hash' => csrf_hash(),
+        ]);
         
     }
 

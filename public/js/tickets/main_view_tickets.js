@@ -1,6 +1,30 @@
 $(function () {
     console.log('Módulo de Tickets - AJAX');
 
+    function csrfMeta() {
+        return $('meta[name="X-CSRF-TOKEN"]');
+    }
+
+    function actualizarCsrf(hash) {
+        if (!hash) {
+            return;
+        }
+
+        if (typeof window.refreshCsrfToken === 'function') {
+            window.refreshCsrfToken(hash);
+        } else {
+            csrfMeta().attr('content', hash);
+        }
+    }
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, opciones) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(opciones.type)) {
+                xhr.setRequestHeader('X-CSRF-TOKEN', csrfMeta().attr('content') || '');
+            }
+        }
+    });
+
     obtenerTickets();
     setInterval(function () {
         obtenerTickets();
@@ -63,12 +87,24 @@ $(function () {
             id_solicitud: idSolicitud
         },
         success: function (response) {
+            actualizarCsrf(response.csrf_hash);
+        
+            if (response.status !== 'success') {
+                console.error(response.message);
+                return;
+            }
+        
             $('#modal-asignar').modal('hide');
             obtenerTickets();
         },
         error: function (xhr, status, error) {
+            if (xhr.status === 403) {
+                console.error('Token CSRF inválido o expirado. Recargue la página.');
+                return;
+            }
             console.error('Error al asignar técnico:', error);
         }
+        
     });
 });
 });
