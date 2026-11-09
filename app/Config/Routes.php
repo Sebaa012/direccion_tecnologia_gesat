@@ -12,6 +12,8 @@ $routes->get('/login', 'Users\LoginController::viewLogin');
 $routes->post('/Users/LoginController/login', 'Users\LoginController::login');
 $routes->get('/dashboard', 'Solicitudes\SolicitudController::dashboard');
 $routes->get('/solicitudes', 'Solicitudes\SolicitudController::solicitudes');
+$routes->post('/tickets/resolve/(:num)', 'Solicitudes\SolicitudController::resolveTicket/$1');
+$routes->post('/tickets/escalar/(:num)', 'Solicitudes\SolicitudController::escalarTicket/$1');
 $routes->post('/saveSolicitud', 'Solicitudes\SolicitudController::setSolicitud');
 
 

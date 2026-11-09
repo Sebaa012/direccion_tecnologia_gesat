@@ -106,5 +106,28 @@ class SolicitudController extends BaseController
         return view('Tickets/TicketPendiente', ['titulo' => 'Tickets Pendientes', 'solicitudes' => $solicitudes]);
     }
 
-    
+
+    public function resolveTicket($id_ticket){
+        if (!empty($id_ticket)) {
+            $data = [
+                'estado' => 'RESUELTO',
+                'fecha_res' => date('Y-m-d H:i:s')
+            ];
+            $this->solicitudModel->setSolicitudResolucion($id_ticket, $data);
+            $this->asignateModel->updateAsignacion($id_ticket, ['estado' => 'RESUELTO']);
+            return redirect()->to('/tickets/pendientes?resolved=1');
+        }
+    }
+
+    public function escalarTicket($id_ticket){
+        if (!empty($id_ticket)) {
+            $data = [
+                'estado' => 'NO RESUELTO',
+                'fecha_res' => date('Y-m-d H:i:s')
+            ];
+            $this->solicitudModel->setSolicitudResolucion($id_ticket, $data);
+            $this->asignateModel->updateAsignacion($id_ticket, ['estado' => 'NO RESUELTO']);
+            return redirect()->to('/tickets/pendientes?escalated=1');
+        }
+    }
 }

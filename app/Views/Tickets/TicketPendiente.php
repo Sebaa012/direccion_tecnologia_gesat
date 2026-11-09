@@ -39,10 +39,20 @@ if (isset($_GET['asignado']) && $_GET['asignado'] == 1) { ?>
                                 <td><?php echo $solicitud['piso'] ?></td>
                                 <td><?php echo $solicitud['tipo_solicitud'] ?></td>
                                 <td><?php echo $solicitud['descripcion'] ?></td>
-                            <th>
-                                <button class="btn btn-primary"><i class="fas fa-user-check" onclick="alert('¿Desea marcar como resuelto?')"></i></button>
-                                <button class="btn btn-danger"><i class="fas fa-user-times" onclick="alert('¿Desea marcar como no resuelto? (Escalar Incidente)')"></i></button>
-                            </th>
+                                <td>
+                                <div class="d-flex gap-2 align-items-center">
+                                    <form action="<?= base_url('tickets/resolve/' . $solicitud['id_solicitud']) ?>" method="post" class="m-0">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="id_solicitud" value="<?php echo $solicitud['id_solicitud'] ?>">
+                                        <button type="submit" class="btn btn-success" onclick="return confirm('¿Desea marcar como resuelto?')"><i class="fas fa-user-check"></i></button>
+                                    </form>
+                                    <form action="<?= base_url('tickets/escalar/' . $solicitud['id_solicitud']) ?>" method="post" class="m-0">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="id_solicitud" value="<?php echo $solicitud['id_solicitud'] ?>">
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea marcar como no resuelto? (Escalar Incidente)')"><i class="fas fa-user-times"></i></button>
+                                    </form>
+                                </div>
+                            </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

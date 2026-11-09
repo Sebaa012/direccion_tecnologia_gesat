@@ -43,6 +43,11 @@ class AsignateModel extends Model
         return $misAsignaciones;
 
     }
+
+    public function updateAsignacion($id_asignacion, $data)
+    {
+        return $this->update($id_asignacion, $data);
+    }
 }
 
 
