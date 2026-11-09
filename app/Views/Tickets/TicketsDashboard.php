@@ -72,23 +72,28 @@ if (isset($_GET['asignado']) && $_GET['asignado'] == 1) { ?>
 <div class="modal" id="modal-asignar">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
-                <h5 class="modal-title fw-bold">Asignar Técnico</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-check">
+            <form id="form-asignar" action="<?= base_url('tickets/asignar') ?>" method="post">
+                <?= csrf_field() ?>
+                <input type="hidden" name="id_solicitud" id="id_solicitud_asignar" value="">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title fw-bold">Asignar Técnico</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small mb-2">Puede seleccionar uno o varios técnicos.</p>
+                    <p class="text-danger small mb-2 d-none" id="asignar-error"></p>
                     <?php foreach ($usuarios as $usuario): ?>
-                        <form action="<?= base_url('tickets/asignar') ?>" method="post">
-                            <label class="form-check-label d-flex justify-content-between align-items-center border p-2 rounded mb-2" for="id_usuario_<?= $usuario['id_usuario'] ?>">
-                                <?= $usuario['nombre_u'] . " " . $usuario['apellido_u'] ?>
-                                <a href="#" class="btn btn-success btn-confirmar-asignar" data-id-usuario="<?= $usuario['id_usuario'] ?>"><i class="fa-solid fa-user-pen"></i></a>
-                            </label>
-                        </form>
-
+                        <label class="form-check-label d-flex justify-content-between align-items-center border p-2 rounded mb-2" for="id_usuario_<?= $usuario['id_usuario'] ?>">
+                            <?= esc($usuario['nombre_u'] . ' ' . $usuario['apellido_u']) ?>
+                            <input type="checkbox" class="form-check-input" name="id_usuario[]" id="id_usuario_<?= $usuario['id_usuario'] ?>" value="<?= $usuario['id_usuario'] ?>">
+                        </label>
                     <?php endforeach; ?>
                 </div>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success btn-confirmar-asignar">Asignar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

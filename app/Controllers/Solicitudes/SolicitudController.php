@@ -76,33 +76,41 @@ class SolicitudController extends BaseController
 
     public function asignarTicketsAjax()
     {
-        $id = $this->request->getPost('id_solicitud');
-        if(!$id){
+        $idSolicitud = $this->request->getPost('id_solicitud');
+        $idUsuarios  = $this->request->getPost('id_usuario');
+        $idUsuarios  = is_array($idUsuarios) ? $idUsuarios : [$idUsuarios];
+        $idUsuarios  = array_values(array_filter(array_map('intval', $idUsuarios)));
+
+        if (empty($idSolicitud) || $idUsuarios === []) {
             return $this->response->setJSON([
                 'status' => 'error',
-                'message' => 'Error al asignar el ticket',
+                'message' => 'Debe seleccionar al menos un técnico.',
                 'csrf_hash' => csrf_hash(),
             ]);
         }
+
         $data = [
             'estado' => 'EN ATENCIÓN',
             'fecha_res' => date('Y-m-d H:i:s')
         ];
-        $this->solicitudModel->setSolicitudResolucion($id, $data);
-        $this->asignateModel->setAsignacion($this->request->getPost('id_usuario'), $id, session()->get('id_usuario'));
-        
+        $this->solicitudModel->setSolicitudResolucion($idSolicitud, $data);
+
+        foreach ($idUsuarios as $idUsuario) {
+            $this->asignateModel->setAsignacion($idUsuario, $idSolicitud, session()->get('id_usuario'));
+        }
+
         return $this->response->setJSON([
             'status' => 'success',
             'message' => 'Ticket en atención',
+            'asignados' => $idUsuarios,
             'csrf_hash' => csrf_hash(),
         ]);
-        
     }
 
     public function ticketsPendientes()
     {
         $id_usuario = session('id_usuario');
-        $solicitudes = $this->solicitudModel->getSolicitudes();
+        $solicitudes = $this->asignateModel->getAsignaciones($id_usuario);
         return view('Tickets/TicketPendiente', ['titulo' => 'Tickets Pendientes', 'solicitudes' => $solicitudes]);
     }
 

@@ -66,45 +66,82 @@ $(function () {
         });
     }
 
-    $(document).on('click', '.btn-asignar', function () {
+    function modalAsignar() {
+        return bootstrap.Modal.getOrCreateInstance(document.getElementById('modal-asignar'));
+    }
+
+    function mostrarError(mensaje) {
+        $('#asignar-error').removeClass('d-none').text(mensaje);
+    }
+
+    $(document).on('click', '#ticket-list .btn-asignar', function () {
         let idSolicitud = $(this).data('id-solicitud');
-        console.log(idSolicitud);
-        $('#modal-asignar').modal('show');
-        $('#modal-asignar').data('id-solicitud', idSolicitud);
+
+        $('#form-asignar')[0].reset();
+        $('#asignar-error').addClass('d-none').text('');
+        $('#id_solicitud_asignar').val(idSolicitud);
+
+        modalAsignar().show();
     });
 
-    $(document).on('click', '.btn-confirmar-asignar', function () {
-    let idUsuario = $(this).data('id-usuario');
+    // Enviar la asignación por AJAX (uno o varios técnicos)
+    $('#form-asignar').on('submit', function (event) {
+        event.preventDefault();
 
-    let idSolicitud = $('#modal-asignar').data('id-solicitud');
+        let $form = $(this);
+        let $boton = $form.find('.btn-confirmar-asignar');
+        let idSolicitud = $('#id_solicitud_asignar').val();
+        let idUsuarios = $form.find('input[name="id_usuario[]"]:checked').map(function () {
+            return this.value;
+        }).get();
 
-    $.ajax({
-        url: window.baseURL + 'tickets/asignar', 
-        method: 'POST',
-        dataType: 'JSON',
-        data: {
-            id_usuario: idUsuario,
-            id_solicitud: idSolicitud
-        },
-        success: function (response) {
-            actualizarCsrf(response.csrf_hash);
-        
-            if (response.status !== 'success') {
-                console.error(response.message);
-                return;
-            }
-        
-            $('#modal-asignar').modal('hide');
-            obtenerTickets();
-        },
-        error: function (xhr, status, error) {
-            if (xhr.status === 403) {
-                console.error('Token CSRF inválido o expirado. Recargue la página.');
-                return;
-            }
-            console.error('Error al asignar técnico:', error);
+        if (!idSolicitud) {
+            mostrarError('No se identificó el ticket a asignar. Cierre el modal e intente de nuevo.');
+            return;
         }
-        
+
+        if (idUsuarios.length === 0) {
+            mostrarError('Seleccione al menos un técnico.');
+            return;
+        }
+
+        $('#asignar-error').addClass('d-none').text('');
+        $boton.prop('disabled', true);
+
+        $.ajax({
+            url: window.baseURL + 'tickets/asignar',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                id_solicitud: idSolicitud,
+                id_usuario: idUsuarios
+            },
+            success: function (response) {
+                if (response.status !== 'success') {
+                    actualizarCsrf(response.csrf_hash);
+                    mostrarError(response.message || 'No se pudo asignar el ticket.');
+                    return;
+                }
+
+                modalAsignar().hide();
+                $form[0].reset();
+
+                actualizarCsrf(response.csrf_hash);
+
+                obtenerTickets();
+            },
+            error: function (xhr) {
+                if (xhr.status === 403) {
+                    mostrarError('El token de seguridad expiró. Recargue la página e intente de nuevo.');
+                    return;
+                }
+
+                mostrarError('Ocurrió un error al asignar el técnico. Intente de nuevo.');
+                console.error('Error al asignar técnico:', xhr.responseText || xhr.statusText);
+            },
+            complete: function () {
+                $boton.prop('disabled', false);
+            }
+        });
     });
-});
 });

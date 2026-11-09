@@ -40,7 +40,15 @@ class SolicitudModel extends Model
     }
 
     public function setSolicitudResolucion($id_solicitud, $data){
-        return $this->update($id_solicitud, $data);
+
+        $estado = $data['estado'];
+        $fecha_res = date('Y-m-d H:i:s');
+
+        $resSolicitud = $this->db->query(
+            "UPDATE {$this->table} SET estado = ?, fecha_res = ? WHERE id_solicitud = ?",
+            [$estado, $fecha_res, $id_solicitud]
+        );
+
     }
 
     public function getSolicitudes(){

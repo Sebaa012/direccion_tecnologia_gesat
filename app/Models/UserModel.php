@@ -38,7 +38,7 @@ class UserModel extends Model
         }
 
 
-        $hash_password = $this->db->query("SELECT password FROM $this->table WHERE cedula = '$cedula'")->getRowArray();
+        $hash_password = $this->db->query("SELECT password FROM $this->table WHERE cedula = ?", [$cedula])->getRowArray();
 
         if ($hash_password == null) {
             return false;
@@ -47,9 +47,9 @@ class UserModel extends Model
         $hash_password = $hash_password['password'];
 
     
-        $usuario = $this->db->query("SELECT id_usuario,cedula,nombre_u,apellido_u,correo_electronico,rol FROM $this->table WHERE cedula = '$cedula'")->getRowArray();
+        $usuario = $this->db->query("SELECT id_usuario,cedula,nombre_u,apellido_u,correo_electronico,rol FROM $this->table WHERE cedula = ?", [$cedula])->getRowArray();
 
-        $this->db->query("UPDATE $this->table SET activo = '1' WHERE cedula = '$cedula'");
+        $this->db->query("UPDATE $this->table SET activo = '1' WHERE cedula = ?", [$cedula]);
         //log_message('debug', 'Usuario: ' . json_encode($usuario));
         //die();
         if (empty($usuario)) {
