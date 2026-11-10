@@ -56,6 +56,19 @@ class SolicitudModel extends Model
         return $solicitudes->getResultArray();
     }
 
+public function getBitacoraSolicitudes($fecha_hoy){
+    $bitacora = $this->db->query(
+        "SELECT departamento, tipo_solicitud, estado 
+            FROM {$this->table} 
+            WHERE fecha_soli >= (?::timestamp - INTERVAL '8 hours')",
+        [$fecha_hoy]
+    )->getResultArray();
+
+    log_message('info', 'Consulta de bitácora ejecutada: ' . $this->db->getLastQuery());
+    return $bitacora;
+}
+
+
 }
 
 ?>

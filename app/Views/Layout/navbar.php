@@ -17,7 +17,7 @@
                 </li>
                 <?php if (session()->get('rol') == 'ADMINISTRADOR') { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Reportes</a>
+                        <a class="nav-link" href="<?= base_url('reportes') ?>">Reportes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('administration') ?>">Administrar Usuarios</a>

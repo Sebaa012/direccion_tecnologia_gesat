@@ -70,7 +70,7 @@
                             'Segundo Piso' => 'Segundo Piso',
                             'Tercer Piso' => 'Tercer Piso',
                             'Cuarto Piso' => 'Cuarto Piso',
-                            6 => 'Quinto Piso',
+                            'Quinto Piso' => 'Quinto Piso',
 
                         ], '', ['class' => 'form-select ', 'id' => 'piso', 'required' => true, 'placeholder' => 'Seleccione el piso']); ?>
                     </div>

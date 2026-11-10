@@ -16,6 +16,9 @@ $routes->post('/tickets/resolve/(:num)', 'Solicitudes\SolicitudController::resol
 $routes->post('/tickets/escalar/(:num)', 'Solicitudes\SolicitudController::escalarTicket/$1');
 $routes->post('/saveSolicitud', 'Solicitudes\SolicitudController::setSolicitud');
 
+$routes->get('/reportes', 'Reportes\ReportController::reportView');
+$routes->get('/reportes/bitacora', 'Reportes\ReportController::generateReport');
+
 
 $routes->post('/logout', 'Users\LoginController::logout');
 

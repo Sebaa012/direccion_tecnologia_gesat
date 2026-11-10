@@ -12,7 +12,8 @@
     "require": {
         "php": "^8.2",
         "codeigniter4/framework": "^4.7",
-        "firebase/php-jwt": "^7.2"
+        "firebase/php-jwt": "^7.2",
+        "tecnickcom/tcpdf": "^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",
@@ -39,6 +40,18 @@
         "sort-packages": true
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "tc-lib-pdf-fonts": [
+            "[ -d vendor/tecnickcom/tc-lib-pdf-font ] && make -C vendor/tecnickcom/tc-lib-pdf-font deps fonts || true"
+        ],
+        "post-install-cmd": [
+            "@tc-lib-pdf-fonts"
+        ],
+        "post-update-cmd": [
+            "@tc-lib-pdf-fonts"
+        ],
+        "post-autoload-dump": [
+            "@tc-lib-pdf-fonts"
+        ]
     }
 }
