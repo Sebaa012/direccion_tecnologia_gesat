@@ -19,7 +19,7 @@ class ReportController extends BaseController
     public function reportView()
     {
         
-        return view('Report/Reports', ['titulo' => 'Bitácora de Solicitudes']);
+        return view('Report/Reports', ['titulo' => 'Reportes']);
     }
 
     public function generateReport()
@@ -53,7 +53,8 @@ class ReportController extends BaseController
         foreach ($bitacora as $solicitud) {
             if($solicitud['estado'] == 'RESUELTO')
             {
-                $html .= '<tr>';
+                $style = ' background-color: #d4edda;'; // Color verde para solicitudes resueltas
+                $html .= '<tr style="' . $style . '">';
                 $html .= '<td>' . htmlspecialchars((string) ($solicitud['departamento'] ?? ''), ENT_QUOTES, 'UTF-8') . '</td>';
                 $html .= '<td>' . htmlspecialchars((string) ($solicitud['tipo_solicitud'] ?? ''), ENT_QUOTES, 'UTF-8') . '</td>';
                 $html .= '</tr>';
@@ -68,7 +69,7 @@ class ReportController extends BaseController
         foreach ($bitacora as $solicitud) {
             if($solicitud['estado'] == 'PENDIENTE')
             {
-                $html .= '<tr>';
+                $html .= '<tr style="background-color: #f8f9fa;">';
                 $html .= '<td>' . htmlspecialchars((string) ($solicitud['departamento'] ?? ''), ENT_QUOTES, 'UTF-8') . '</td>';
                 $html .= '<td>' . htmlspecialchars((string) ($solicitud['tipo_solicitud'] ?? ''), ENT_QUOTES, 'UTF-8') . '</td>';
                 $html .= '</tr>';
@@ -78,11 +79,9 @@ class ReportController extends BaseController
 
         $pdf->SetFont('helvetica', '', 11);
 
-        // Escribir el contenido HTML en el PDF
         $pdf->writeHTML($html, true, false, true, false, '');
 
-        // Salida del PDF al navegador ('I' = inline). No debe haber salida
-        // previa (ni avisos de PHP) o el documento se corrompe.
+
         $pdf->Output('bitacora_solicitudes.pdf', 'I');
         exit;
     }

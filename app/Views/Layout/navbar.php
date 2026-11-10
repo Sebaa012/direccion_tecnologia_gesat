@@ -10,7 +10,7 @@
                     <a class="nav-link active" aria-current="page" href="<?= base_url('/dashboard') ?>">Tickets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mis Tickets</a>
+                    <a class="nav-link" href="<?= base_url('/tickets/mytickets') ?>">Mis Tickets</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('/tickets/pendientes') ?>">Pendientes</a>

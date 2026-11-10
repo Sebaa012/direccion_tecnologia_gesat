@@ -14,10 +14,12 @@ $routes->get('/dashboard', 'Solicitudes\SolicitudController::dashboard');
 $routes->get('/solicitudes', 'Solicitudes\SolicitudController::solicitudes');
 $routes->post('/tickets/resolve/(:num)', 'Solicitudes\SolicitudController::resolveTicket/$1');
 $routes->post('/tickets/escalar/(:num)', 'Solicitudes\SolicitudController::escalarTicket/$1');
+$routes->get('/tickets/mytickets', 'Solicitudes\SolicitudController::misTickets');  
 $routes->post('/saveSolicitud', 'Solicitudes\SolicitudController::setSolicitud');
 
 $routes->get('/reportes', 'Reportes\ReportController::reportView');
 $routes->get('/reportes/bitacora', 'Reportes\ReportController::generateReport');
+
 
 
 $routes->post('/logout', 'Users\LoginController::logout');

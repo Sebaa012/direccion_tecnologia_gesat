@@ -107,11 +107,18 @@ class SolicitudController extends BaseController
         ]);
     }
 
-    public function ticketsPendientes()
+    public function misTickets()
     {
         $id_usuario = session('id_usuario');
         $solicitudes = $this->asignateModel->getAsignaciones($id_usuario);
-        return view('Tickets/TicketPendiente', ['titulo' => 'Tickets Pendientes', 'solicitudes' => $solicitudes]);
+        return view('Tickets/MisTickets', ['titulo' => 'Tickets Pendientes', 'solicitudes' => $solicitudes]);
+    }
+
+     public function ticketsPendientes()
+    {
+        $id_usuario = session('id_usuario');
+        $solicitudes = $this->asignateModel->getAsignaciones($id_usuario);
+        return view('Tickets/MisTickets', ['titulo' => 'Tickets Pendientes', 'solicitudes' => $solicitudes]);
     }
 
 
