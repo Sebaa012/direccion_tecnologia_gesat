@@ -1,12 +1,24 @@
 <?php echo $this->extend('Layout/layout'); ?>
 <?php echo $this->section('content') ?>
 
-<?php 
-if (isset($_GET['asignado']) && $_GET['asignado'] == 1) { ?>
-    <div class="alert alert-success" role="alert">Solicitud asignada correctamente</div>
+
+<?php if (session()->get('rol') == null ){ ?>
+    <script>
+        window.location.href = "/";
+    </script>
 <?php } ?>
 
 <div class="mt-2">
+
+    <?php 
+    if (isset($_GET['resolved']) && $_GET['resolved'] == 1) { ?>
+        <div class="row justify-content-center">
+            <div class="col d-flex justify-content-center">
+                <div class="alert alert-success w-50 text-center" role="alert">Solicitud resuelta correctamente</div>
+            </div>
+
+        </div>
+    <?php } ?>
     <div class="row justify-content-center">
         <div class="col">
             <h1 class="text-center fw-bold">Tickets Pendientes</h1>
