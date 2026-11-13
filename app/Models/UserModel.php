@@ -65,7 +65,7 @@ class UserModel extends Model
 
     public function getTecnicos()
     {
-        $tecnicos = $this->db->query("SELECT cedula, CONCAT(nombre_u, ' ', apellido_u) as nombre FROM $this->table WHERE rol = 'TECNICO'")->getResultArray();
+        $tecnicos = $this->db->query("SELECT id_usuario, cedula, CONCAT(nombre_u, ' ', apellido_u) as nombre FROM $this->table WHERE rol = 'TECNICO'")->getResultArray();
         return $tecnicos;
     }
 

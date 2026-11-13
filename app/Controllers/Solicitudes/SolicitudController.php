@@ -117,8 +117,9 @@ class SolicitudController extends BaseController
      public function ticketsPendientes()
     {
         $id_usuario = session('id_usuario');
-        $solicitudes = $this->asignateModel->getAsignaciones($id_usuario);
-        return view('Tickets/MisTickets', ['titulo' => 'Tickets Pendientes', 'solicitudes' => $solicitudes]);
+        $solicitudes = $this->solicitudModel->getSolicitudesReasignacion();
+        $usuarios = $this->userModel->getTecnicos();
+        return view('Tickets/TicketPendiente', ['titulo' => 'Tickets Pendientes', 'solicitudes' => $solicitudes, 'usuarios' => $usuarios]);
     }
 
 
@@ -133,7 +134,7 @@ class SolicitudController extends BaseController
             ];
             $this->solicitudModel->setSolicitudResolucion($id_ticket, $data);
             $this->asignateModel->updateAsignacion($id_ticket, $data);
-            return redirect()->to('/tickets/pendientes?resolved=1');
+            return redirect()->to('/tickets/mytickets?resolved=1');
         }
     }
 
@@ -143,12 +144,12 @@ class SolicitudController extends BaseController
             $data = [
                 'estado' => 'NO RESUELTO',
                 'fecha_esc' => date('Y-m-d H:i:s'),
-                'desc_resolucion' => $this->request->getpost('descripcion_ur'),
+                'desc_resolucion' => $this->request->getpost('descripcion'),
                 'cont' => '0'
             ];
             $this->solicitudModel->setSolicitudResolucion($id_ticket, $data);
             $this->asignateModel->updateAsignacion($id_ticket, $data);
-            return redirect()->to('/tickets/pendientes?escalated=1');
+            return redirect()->to('/tickets/mytickets?escalated=1');
         }
     }
 }

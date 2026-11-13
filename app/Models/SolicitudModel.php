@@ -18,7 +18,7 @@ class SolicitudModel extends Model
         'telefono',
         'fecha_soli',
         'fecha_res',
-        'estado'
+        'estado',
     ];
 
     protected $createdField = 'fecha_soli';
@@ -57,17 +57,29 @@ class SolicitudModel extends Model
         return $solicitudes->getResultArray();
     }
 
-public function getBitacoraSolicitudes($fecha_hoy){
-    $bitacora = $this->db->query(
-        "SELECT departamento, tipo_solicitud, estado 
-            FROM {$this->table} 
-            WHERE fecha_soli >= (?::timestamp - INTERVAL '8 hours')",
-        [$fecha_hoy]
-    )->getResultArray();
 
-    log_message('info', 'Consulta de bitácora ejecutada: ' . $this->db->getLastQuery());
-    return $bitacora;
-}
+    public function getSolicitudesReasignacion(){
+        $solicitudes = $this->db->query(
+            "SELECT CONCAT(u.nombre_u, ' ', u.apellido_u) as nombre_tecnico, s.departamento, s.tipo_solicitud, s.nombre_solicitante as solicitante, a.estado 
+            FROM {$this->table} s
+            INNER JOIN bitacoras.asignaciones a ON s.id_solicitud = a.id_solicitud
+            INNER JOIN autenticacion.usuarios u ON a.tecnico = u.id_usuario
+            WHERE a.estado = 'NO RESUELTO'"
+        )->getResultArray();
+        return $solicitudes;
+    }
+
+    public function getBitacoraSolicitudes($fecha_hoy){
+        $bitacora = $this->db->query(
+            "SELECT departamento, tipo_solicitud, estado 
+                FROM {$this->table} 
+                WHERE fecha_soli >= (?::timestamp - INTERVAL '8 hours')",
+            [$fecha_hoy]
+        )->getResultArray();
+
+        log_message('info', 'Consulta de bitácora ejecutada: ' . $this->db->getLastQuery());
+        return $bitacora;
+    }
 
 
 }
