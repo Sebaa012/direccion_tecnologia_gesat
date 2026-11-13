@@ -42,6 +42,7 @@ class SolicitudModel extends Model
     public function setSolicitudResolucion($id_solicitud, $data){
 
         $estado = $data['estado'];
+        //var_dump($estado); die();
         $fecha_res = date('Y-m-d H:i:s');
 
         $resSolicitud = $this->db->query(

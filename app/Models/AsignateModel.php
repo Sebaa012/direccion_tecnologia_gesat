@@ -46,8 +46,13 @@ class AsignateModel extends Model
 
     public function updateAsignacion($id_asignacion, $data)
     {
+        if($data['cont'] == '1'){
+            $updateAsignacion = $this->db->query("UPDATE {$this->table} SET estado = ?,  desc_resolucion = ?, fecha_resol = ?  WHERE id_solicitud = ?",[$data['estado'], $data['desc_resolucion'], $data['fecha_res'], $id_asignacion]);
+        }else if($data['cont'] == '0'){
+            $updateAsignacion = $this->db->query("UPDATE {$this->table} SET estado = ?,  desc_resolucion = ?, fecha_esc = ?  WHERE id_solicitud = ?",[$data['estado'], $data['desc_resolucion'], $data['fecha_esc'], $id_asignacion]);
+
+        }
         
-        $updateAsignacion = $this->db->query("UPDATE {$this->table} SET estado = ?,  desc_resolucion = ?, fecha_resol = ?  WHERE id_solicitud = ?",[$data['estado'], $data['desc_resolucion'], $data['fecha_res'], $id_asignacion]);
         return $updateAsignacion;
     }
 }

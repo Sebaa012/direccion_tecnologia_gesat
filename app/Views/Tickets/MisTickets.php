@@ -34,6 +34,7 @@
                     <table class="table table-hover table-bordered">
                         <thead class="table-dark">
                             <tr>
+                                <th>ID</th>
                                 <th>Solicitante</th>
                                 <th>Departamento</th>
                                 <th>Piso</th>
@@ -51,6 +52,7 @@
                         <?php else: ?>
                         <?php foreach ($solicitudes as $solicitud) : ?>
                             <tr>
+                                <td><?php echo $solicitud['id_solicitud'] ?></td>
                                 <td><?php echo $solicitud['nombre_solicitante'] ?></td>
                                 <td><?php echo $solicitud['departamento'] ?></td>
                                 <td><?php echo $solicitud['piso'] ?></td>
@@ -62,11 +64,7 @@
 
                             </td>
                             </tr>
-                               
-                            <?php endforeach; ?>
 
-                        </tbody>
-                    </table>
                      <div class="modal" id="modal-resolve">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -76,10 +74,10 @@
 
                                             </div>
                                             <div class="modal-body">
-                                            <?= form_open('tickets/resolve/' . $solicitud['id_solicitud'], ['id' => 'form_resolve']) ?>
+                                            <?= form_open('tickets/resolve/' . $solicitud['id_solicitud'], ['id' => 'form_escala']) ?>
                                                 <?= form_label('Añada más detalles a su resolución: ', 'descripcion', ['class'=>'col-sm-4 col-form-label']);?>
                                                 <?= form_textarea('descripcion', '', ['class' => 'form-control', 'id' => 'descripcion', 'rows'=> '4']);?>
-                                                <?= form_submit('btn-confirm', 'Confirmar Resolución', ['class' => 'btn btn-success px-4','id' => 'btn-confirm-resolve', 'required' => true]) ?>
+                                                <?= form_submit('btn-confirm', 'Confirmar Resolución', ['class' => 'btn btn-success px-4 descripcion','id' => 'btn-confirm-resolve', 'required' => true]) ?>
                                             <?= form_close() ?>
                                             </div>
                                         </div>
@@ -99,7 +97,7 @@
                                             <?= form_open('tickets/escalar/' . $solicitud['id_solicitud'], ['id' => 'form_resolve']) ?>
                                                 <?= form_label('Añada más detalles a su resolución: ', 'descripcion', ['class'=>'col-sm-4 col-form-label']);?>
                                                 <?= form_textarea('descripcion', '', ['class' => 'form-control', 'id' => 'descripcion', 'rows'=> '4']);?>
-                                                <?= form_submit('btn-confirm', 'Confirmar Resolución', ['class' => 'text-white btn btn-danger px-4','id' => 'btn-confirm-resolve', 'required' => true]) ?>
+                                                <?= form_submit('btn-confirm', 'Escalar incidente', ['class' => 'text-white btn btn-danger px-4 descripcion','id' => 'btn-confirm-resolve', 'required' => true]) ?>
                                             <?= form_close() ?>
                                             </div>
                                         </div>
@@ -107,6 +105,12 @@
                                 </div>
 
                         </div>
+                               
+                            <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
+                        
                         <?php endif;?>
 
                 

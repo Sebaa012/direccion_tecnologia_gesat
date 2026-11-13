@@ -123,13 +123,13 @@ class SolicitudController extends BaseController
 
 
     public function resolveTicket($id_ticket){
-    /*var_dump($this->request->getpost());
-    die();*/    
+    //var_dump($id_ticket);die();    
     if (!empty($id_ticket)) {
             $data = [
                 'estado' => 'RESUELTO',
                 'fecha_res' => date('Y-m-d H:i:s'),
-                'desc_resolucion' => $this->request->getpost('descripcion')
+                'desc_resolucion' => $this->request->getpost('descripcion'),
+                'cont' => '1'
             ];
             $this->solicitudModel->setSolicitudResolucion($id_ticket, $data);
             $this->asignateModel->updateAsignacion($id_ticket, $data);
@@ -138,11 +138,13 @@ class SolicitudController extends BaseController
     }
 
     public function escalarTicket($id_ticket){
+        //var_dump($this->request->getpost('descripcion_ur')); die();
         if (!empty($id_ticket)) {
             $data = [
                 'estado' => 'NO RESUELTO',
-                'fecha_res' => 'NULL',
-                'desc_resolucion' => $this->request->getpost('descripcion')
+                'fecha_esc' => date('Y-m-d H:i:s'),
+                'desc_resolucion' => $this->request->getpost('descripcion_ur'),
+                'cont' => '0'
             ];
             $this->solicitudModel->setSolicitudResolucion($id_ticket, $data);
             $this->asignateModel->updateAsignacion($id_ticket, $data);
