@@ -60,7 +60,7 @@ class SolicitudModel extends Model
 
     public function getSolicitudesReasignacion(){
         $solicitudes = $this->db->query(
-            "SELECT CONCAT(u.nombre_u, ' ', u.apellido_u) as nombre_tecnico, s.departamento, s.tipo_solicitud, s.nombre_solicitante as solicitante, a.estado 
+            "SELECT a.id_solicitud, a.desc_resolucion, CONCAT(u.nombre_u, ' ', u.apellido_u) as nombre_tecnico, s.departamento, s.tipo_solicitud, s.nombre_solicitante as solicitante, a.estado 
             FROM {$this->table} s
             INNER JOIN bitacoras.asignaciones a ON s.id_solicitud = a.id_solicitud
             INNER JOIN autenticacion.usuarios u ON a.tecnico = u.id_usuario

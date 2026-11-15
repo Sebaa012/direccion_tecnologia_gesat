@@ -38,19 +38,21 @@ class AsignateModel extends Model
         $misAsignaciones = $this->db->query(
             "SELECT a.id_asignacion, s.id_solicitud, s.tipo_solicitud, s.departamento, s.piso, s.nombre_solicitante, s.descripcion, s.fecha_soli/*, (SELECT CONCAT(nombre_u, ' ', apellido_u) FROM {table} WHERE id_usuario = a.asignante) AS asignante*/
             FROM {$this->table} a INNER JOIN {$this->table_2} s ON a.id_solicitud = s.id_solicitud 
-            WHERE a.tecnico = ? AND s.estado = 'EN ATENCIÓN' ORDER BY s.fecha_soli ASC", [$id_tecnico])->getResultArray();
+            WHERE a.tecnico = ? AND a.estado = 'ASIGNADO' AND s.estado = 'EN ATENCIÓN' ORDER BY s.fecha_soli ASC", [$id_tecnico])->getResultArray();
         
         return $misAsignaciones;
 
     }
 
-    public function updateAsignacion($id_asignacion, $data)
+    public function updateAsignacion($id_ticket, $data)
     {
         if($data['cont'] == '1'){
-            $updateAsignacion = $this->db->query("UPDATE {$this->table} SET estado = ?,  desc_resolucion = ?, fecha_resol = ?  WHERE id_solicitud = ?",[$data['estado'], $data['desc_resolucion'], $data['fecha_res'], $id_asignacion]);
+            $updateAsignacion = $this->db->query("UPDATE {$this->table} SET estado = ?,  desc_resolucion = ?, fecha_resol = ?  WHERE id_solicitud = ?",[$data['estado'], $data['desc_resolucion'], $data['fecha_res'], $id_ticket]);
         }else if($data['cont'] == '0'){
-            $updateAsignacion = $this->db->query("UPDATE {$this->table} SET estado = ?,  desc_resolucion = ?, fecha_esc = ?  WHERE id_solicitud = ?",[$data['estado'], $data['desc_resolucion'], $data['fecha_esc'], $id_asignacion]);
+            $updateAsignacion = $this->db->query("UPDATE {$this->table} SET estado = ?,  desc_resolucion = ?, fecha_esc = ?  WHERE id_solicitud = ?",[$data['estado'], $data['desc_resolucion'], $data['fecha_esc'], $id_ticket]);
 
+        }else if($data['cont'] == '2'){
+            $updateAsignacion = $this->db->query("UPDATE {$this->table} SET estado = ?, fecha_rea = ? WHERE id_solicitud = ?",[$data['estado'], $data['fecha_rea'], $id_ticket]);
         }
         
         return $updateAsignacion;

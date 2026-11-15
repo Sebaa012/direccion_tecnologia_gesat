@@ -41,4 +41,6 @@ $routes->group(
 $routes->get('tickets/listar', 'Solicitudes\SolicitudController::listarTicketsAjax');
 $routes->post('tickets/asignar', 'Solicitudes\SolicitudController::asignarTicketsAjax');
 
+$routes->post('tickets/reasignar', 'Solicitudes\SolicitudController::reasignarTicket');
+
 $routes->get('/tickets/pendientes', 'Solicitudes\SolicitudController::ticketsPendientes');

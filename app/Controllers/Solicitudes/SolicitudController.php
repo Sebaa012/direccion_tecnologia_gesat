@@ -107,6 +107,37 @@ class SolicitudController extends BaseController
         ]);
     }
 
+    public function reasignarTicket()
+    {
+        $id_solicitud = $this->request->getPost('id_solicitud');
+        $id_usuarios  = $this->request->getPost('id_usuario');
+        $id_usuarios  = is_array($id_usuarios) ? $id_usuarios : [$id_usuarios];
+        $id_usuarios  = array_values(array_filter(array_map('intval', $id_usuarios)));
+
+        if (empty($id_solicitud) || $id_usuarios === []) {
+            return redirect()->to('/tickets/pendientes?error=1');
+        }
+
+        $data = [
+            'estado' => 'REASIGNADO',
+            'fecha_rea' => date('Y-m-d H:i:s'),
+            'cont' => '2'
+        ];
+
+        $this->asignateModel->updateAsignacion($id_solicitud, $data);
+
+        $this->solicitudModel->setSolicitudResolucion($id_solicitud, [
+            'estado' => 'EN ATENCIÓN',
+            'fecha_res' => date('Y-m-d H:i:s')
+        ]);
+
+        foreach ($id_usuarios as $id_usuario) {
+            $this->asignateModel->setAsignacion($id_usuario, $id_solicitud, session()->get('id_usuario'));
+        }
+
+        return redirect()->to('/tickets/pendientes?reasign=1');
+    }
+
     public function misTickets()
     {
         $id_usuario = session('id_usuario');
