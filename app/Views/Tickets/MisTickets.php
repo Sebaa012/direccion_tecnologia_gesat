@@ -64,60 +64,53 @@
 
                             </td>
                             </tr>
-
-                     <div class="modal" id="modal-resolve">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-success">
-                                                <h5 class="card-title">Añadir descripción
-                                                </h5>
-
-                                            </div>
-                                            <div class="modal-body">
-                                            <?= form_open('tickets/resolve/' . $solicitud['id_solicitud'], ['id' => 'form_escala']) ?>
-                                                <?= form_label('Añada más detalles a su resolución: ', 'descripcion', ['class'=>'col-sm-4 col-form-label']);?>
-                                                <?= form_textarea('descripcion', '', ['class' => 'form-control', 'id' => 'descripcion', 'rows'=> '4']);?>
-                                                <?= form_submit('btn-confirm', 'Confirmar Resolución', ['class' => 'btn btn-success px-4 descripcion','id' => 'btn-confirm-resolve', 'required' => true]) ?>
-                                            <?= form_close() ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                        </div>
-                        <div class="modal" id="modal-escalate">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-danger">
-                                                <h5 class="card-title text-white">Añadir descripción
-                                                </h5>
-
-                                            </div>
-                                            <div class="modal-body">
-                                            <?= form_open('tickets/escalar/' . $solicitud['id_solicitud'], ['id' => 'form_resolve']) ?>
-                                                <?= form_label('Añada más detalles a su resolución: ', 'descripcion', ['class'=>'col-sm-4 col-form-label']);?>
-                                                <?= form_textarea('descripcion', '', ['class' => 'form-control', 'id' => 'descripcion', 'rows'=> '4']);?>
-                                                <?= form_submit('btn-confirm', 'Escalar incidente', ['class' => 'text-white btn btn-danger px-4 descripcion','id' => 'btn-confirm-resolve', 'required' => true]) ?>
-                                            <?= form_close() ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                        </div>
-                               
                             <?php endforeach; ?>
-
+                        <?php endif;?>
                         </tbody>
                     </table>
-                        
-                        <?php endif;?>
 
-                
+                    <?php if (!empty($solicitudes)): ?>
+                        <?php foreach ($solicitudes as $solicitud) : ?>
+                            <div class="modal" id="modal-resolve">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-success">
+                                            <h5 class="card-title">Añadir descripción</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?= form_open('tickets/resolve/' . $solicitud['id_solicitud'], ['id' => 'form_escala']) ?>
+                                                <?= form_label('Añada más detalles a su resolución: ', 'descripcion', ['class'=>'col-sm-4 col-form-label']);?>
+                                                <?= form_textarea('descripcion', '', ['class' => 'form-control descripcion', 'id' => 'descripcion', 'rows'=> '4']);?>
+                                                <?= form_submit('btn-confirm', 'Confirmar Resolución', ['class' => 'btn btn-success px-4 mt-2','id' => 'btn-confirm-resolve']) ?>
+                                            <?= form_close() ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="modal" id="modal-escalate">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger">
+                                            <h5 class="card-title text-white">Añadir descripción</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?= form_open('tickets/escalar/' . $solicitud['id_solicitud'], ['id' => 'form_resolve']) ?>
+                                                <?= form_label('Añada más detalles a su resolución: ', 'descripcion', ['class'=>'col-sm-4 col-form-label']);?>
+                                                <?= form_textarea('descripcion', '', ['class' => 'form-control descripcion', 'id' => 'descripcion', 'rows'=> '4']);?>
+                                                <?= form_submit('btn-confirm', 'Escalar incidente', ['class' => 'text-white btn btn-danger px-4 mt-2','id' => 'btn-confirm-resolve']) ?>
+                                            <?= form_close() ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
 
 

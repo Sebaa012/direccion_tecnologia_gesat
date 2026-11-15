@@ -2,23 +2,23 @@ $(document).ready(function() {
     function validar(event) {
         console.log("función de validación");
 
-        const descripcion = document.querySelector(".descripcion");
-        if (!descripcion || descripcion.value == null || descripcion.value === '') {
-            $(".descripcion").addClass("is-invalid");
-            $(".descripcion").after($("<span class='error text-danger'>La descripción no puede estar vacía.</span>"));
+        const form = event.currentTarget;
+        const descripcion = form.elements["descripcion"] || form.querySelector(".descripcion") || document.querySelector(".descripcion");
+
+        $(descripcion).siblings(".error").remove();
+        $(descripcion).removeClass("is-invalid");
+
+        if (!descripcion || descripcion.value == null || descripcion.value.trim() === '') {
+            $(descripcion).addClass("is-invalid");
+            $(descripcion).after($("<span class='error text-danger d-block'>La descripción no puede estar vacía.</span>"));
             event.preventDefault();
             return false;
         }
         return true;
     }
 
-    const form_submit = document.getElementById("form_resolve");
-    const form_esc = document.getElementById("form_escala");
-
-    if (form_submit) {
-        form_submit.addEventListener("submit", validar, false);
-    }
-    if (form_esc) {
-        form_esc.addEventListener("submit", validar, false);
-    }
+    const forms = document.querySelectorAll("#form_resolve, #form_escala");
+    forms.forEach(function(form) {
+        form.addEventListener("submit", validar, false);
+    });
 });
