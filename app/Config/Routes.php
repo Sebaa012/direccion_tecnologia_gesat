@@ -12,9 +12,6 @@ $routes->get('/login', 'Users\LoginController::viewLogin');
 $routes->post('/Users/LoginController/login', 'Users\LoginController::login');
 $routes->get('/dashboard', 'Solicitudes\SolicitudController::dashboard');
 $routes->get('/solicitudes', 'Solicitudes\SolicitudController::solicitudes');
-$routes->post('/tickets/resolve/(:num)', 'Solicitudes\SolicitudController::resolveTicket/$1');
-$routes->post('/tickets/escalar/(:num)', 'Solicitudes\SolicitudController::escalarTicket/$1');
-$routes->get('/tickets/mytickets', 'Solicitudes\SolicitudController::misTickets');  
 $routes->post('/saveSolicitud', 'Solicitudes\SolicitudController::setSolicitud');
 
 $routes->get('/reportes', 'Reportes\ReportController::reportView');
@@ -38,9 +35,16 @@ $routes->group(
     }
 );
 
-$routes->get('tickets/listar', 'Solicitudes\SolicitudController::listarTicketsAjax');
-$routes->post('tickets/asignar', 'Solicitudes\SolicitudController::asignarTicketsAjax');
-
-$routes->post('tickets/reasignar', 'Solicitudes\SolicitudController::reasignarTicket');
-
-$routes->get('/tickets/pendientes', 'Solicitudes\SolicitudController::ticketsPendientes');
+$routes->group(
+    'tickets',
+    ['namespace' => 'App\Controllers\Solicitudes'],
+    function ($routes) {
+        $routes->post('resolve/(:num)', 'SolicitudController::resolveTicket/$1');
+        $routes->post('escalar/(:num)', 'SolicitudController::escalarTicket/$1');
+        $routes->get('mytickets', 'SolicitudController::misTickets');
+        $routes->get('listar', 'SolicitudController::listarTicketsAjax');
+        $routes->post('asignar', 'SolicitudController::asignarTicketsAjax');
+        $routes->post('reasignar', 'SolicitudController::reasignarTicket');
+        $routes->get('pendientes', 'SolicitudController::ticketsPendientes');
+    }
+);
