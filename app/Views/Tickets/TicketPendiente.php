@@ -50,6 +50,7 @@
                             </tr>
                         </thead>
                         <tbody id="ticket-list">
+                            <?php if(!empty($solicitudes)): ?>
                             <?php foreach ($solicitudes as $solicitud) : ?>
                             <tr>
                                 <td><?php echo $solicitud['nombre_tecnico'] ?></td>
@@ -67,7 +68,12 @@
                                 </td>
                             </tr>
                             <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="7" class="text-center">No hay tickets pendientes</td>
+                                </tr>
                         </tbody>
+                        <?php endif;?>
                     </table>
                     <?php if (!empty($solicitudes)): ?>
                         <div class="modal" id="modal-asignar">

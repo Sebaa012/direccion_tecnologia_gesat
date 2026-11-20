@@ -126,3 +126,4 @@ _modules/*
 /phpunit.xml
 
 .dsh/
+.postman

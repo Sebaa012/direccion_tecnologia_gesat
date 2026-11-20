@@ -18,7 +18,7 @@ class IdleTimeoutFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $session = session();
-        $time_limit = 10;
+        $time_limit = 3600;
 
         if ($session->has('last_activity')) {
             $time_session = time() - $session->get('last_activity');
